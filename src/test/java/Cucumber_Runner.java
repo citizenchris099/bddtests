@@ -14,7 +14,7 @@ import cucumber.api.junit.Cucumber;
 		"classpath:projectUser.feature", "classpath:userReg.feature" }, glue = { "classpath:com.balfour.publishing.qa" },
 // tags = {"@smoke,@regression"},
 // tags = { "@smoke" },
-tags = { "@ua1" }, format = { "pretty", "html:target/cucumber" }
+tags = { "@ua" }, format = { "pretty", "html:target/cucumber" }
 
 )
 public class Cucumber_Runner {
