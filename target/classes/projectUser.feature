@@ -2,8 +2,7 @@ Feature: SBv3 Project User Page
 
   @pu @regression
   Scenario Outline: Users Cant View Users of certain role types
-    Given registered "<role>"
-    And on PU page as "<loginas>"
+    Given on PU page as "<loginas>"
     When search "<role>"
     Then "<loginas>" cant see "<role>"
 
@@ -12,7 +11,6 @@ Feature: SBv3 Project User Page
       | sales rep        | sales rep        |
       | sales rep        | customer support |
       | sales rep        | administrator    |
-      | sales rep        | disabled         |
       | adviser          | sales rep        |
       | adviser          | customer support |
       | adviser          | administrator    |
@@ -22,8 +20,7 @@ Feature: SBv3 Project User Page
 
   @pu @regression
   Scenario Outline: Users Can View Users of certain role types
-    Given user registered as "<role>"
-    And on PU page as "<loginas>"
+    Given on PU page as "<loginas>"
     When search "<role>"
     Then "<loginas>" can see "<role>"
 
@@ -47,13 +44,13 @@ Feature: SBv3 Project User Page
       | customer support | designer     |
       | customer support | disabled     |
 
-  @pu @regression
+  @pu1 @regression
   Scenario: From Project User Add user to the user register table
     Given on Project User page
     When comploetes Project user reg form
     Then user reg appears on Project User page
 
-  @pu @regression
+  @pu1 @regression
   Scenario: Register User can be deleted from Project User Page
     Given user register present on grid
     When click delete register

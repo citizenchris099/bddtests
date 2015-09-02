@@ -144,7 +144,7 @@ public class Stubs_User_Admin {
 		if (!ur0.equals(ur1)) {
 			throw new RuntimeException("initial values didn't match");
 		}
-		new Sb4NewUserRegProf(driver).doReg(ur0, false, true);
+		new Sb4NewUserRegProf(driver).doReg(ur0, true);
 	}
 
 	@Then("^user can log into SB$")
@@ -171,7 +171,7 @@ public class Stubs_User_Admin {
 		if (!ur0.equals(ur1)) {
 			throw new RuntimeException("initial values didn't match");
 		}
-		new Sb4NewUserRegProf(driver).doReg(ur0, true, true);
+		new Sb4NewUserRegProf(driver).doReg(ur0, true);
 	}
 
 	@Then("^user can log into SB with unique username$")
@@ -329,7 +329,7 @@ public class Stubs_User_Admin {
 		key = new Sb4UserAdminPage(driver).regNewUser(obj);
 		new Sb4UserAdminPage(driver).LogOut();
 		driver.get(key);
-		new Sb4NewUserRegProf(driver).doReg(obj, false, false);
+		new Sb4NewUserRegProf(driver).doReg(obj, false);
 		driver.get(obj1.getSbLogOnUrl());
 		new Sb4LoginPage(driver).loginAs(obj.getEmail(), obj.getPword())
 				.LogOut();

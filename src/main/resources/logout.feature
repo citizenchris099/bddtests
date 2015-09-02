@@ -1,6 +1,6 @@
 Feature: Log out of Studio Balfour v3
 
-  @smoke @regression
+  @smoke @regression @lo
   Scenario: Successfully Logout
     Given logged into SBv3
     When click log out

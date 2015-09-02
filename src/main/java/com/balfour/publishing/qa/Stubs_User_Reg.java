@@ -100,7 +100,7 @@ public class Stubs_User_Reg {
 	@When("^user registers to project set to \"([^\"]*)\"$")
 	public void user_registers_to_project_set_to(String arg1) throws Throwable {
 		driver.get(openReg(arg1, ur0, pc0));
-		new Sb4NewUserRegProf(driver).doReg(ur0, false, false);
+		new Sb4NewUserRegProf(driver).doReg(ur0, false);
 	}
 
 	@Then("^user can log into project$")

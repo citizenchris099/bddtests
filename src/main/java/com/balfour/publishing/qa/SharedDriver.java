@@ -45,6 +45,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 @SuppressWarnings("unused")
 public class SharedDriver extends EventFiringWebDriver {
 
+	static String win10 = "Windows 10";
 	static String win8 = "Windows 8.1";
 	static String win7 = "Windows 7";
 	static String osx9 = "OS X 10.9";
@@ -52,7 +53,7 @@ public class SharedDriver extends EventFiringWebDriver {
 
 //	 private static final WebDriver REAL_DRIVER = initLocal();
 //	private static final WebDriver REAL_DRIVER = initRemoteFF(win8, "37.0");
-	private static final WebDriver REAL_DRIVER = initRemoteCh(win8, "42.0");
+	private static final WebDriver REAL_DRIVER = initRemoteCh(win10, "44.0");
 
 	private static final Thread CLOSE_THREAD = new Thread() {
 		@Override
@@ -67,6 +68,7 @@ public class SharedDriver extends EventFiringWebDriver {
 
 	public SharedDriver() {
 		super(REAL_DRIVER);
+		//
 	}
 
 	@Override
@@ -75,6 +77,9 @@ public class SharedDriver extends EventFiringWebDriver {
 			throw new UnsupportedOperationException(
 					"You shouldn't close this WebDriver. It's shared and will close when the JVM exits.");
 		}
+		
+		//
+		
 		super.close();
 	}
 

@@ -18,8 +18,8 @@ public class Stubs_LogOut {
 
 	WebDriver driver;
 
-	String unameVal = "testuser001";
-	String pwordVal = "password";
+	String unameVal = "veggietester003";
+	String pwordVal = "Welles113*";
 	String url = null;
 	Test_EnviornmentPOJO slugNAction = null;
 	String login = null;
@@ -36,7 +36,6 @@ public class Stubs_LogOut {
 
 	@Given("^logged into SBv(\\d+)$")
 	public void logged_into_SBv(int arg1) throws Throwable {
-
 		driver.get(url);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
