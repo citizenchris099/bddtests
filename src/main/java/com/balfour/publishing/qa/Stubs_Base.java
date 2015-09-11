@@ -26,11 +26,9 @@ public class Stubs_Base {
 	static UserRegPOJO dsr = null;
 	static UserRegPOJO edt = null;
 	static UserRegPOJO pho = null;
-	static TestPOJO tp0 = null;
 
 	public Stubs_Base(SharedDriver driver) throws InterruptedException {
 		this.driver = driver;
-		tp0 = testInfo();
 	}
 
 	/**
@@ -46,9 +44,10 @@ public class Stubs_Base {
 		tp0.setSbUAUrl(new Test_Enviornment().envUrl(slugNAction.getUser_admin()));
 		tp0.setAdminUName("veggieadministrator");
 		tp0.setAdminPword("cOOKE1964");
-		tp0.setAdvUname("veggietester007");
+		tp0.setAdvUname("trevorbelmont001");
 		tp0.setAdvPword("Welles113*");
 		tp0.setMiscUname001("veggietester003");
+		tp0.setMiscPword001("cOOKE1964");
 		tp0.setMiscUname002("veggietester006@gmail.com");
 		return tp0;
 	}
@@ -77,7 +76,7 @@ public class Stubs_Base {
 		ur0.setPinterest(pg.randomUName());
 		ur0.setInstagram(pg.randomUName());
 		ur0.setuName(ur0.getEmail());
-		ur0.setPword(pg.randomPass());
+		ur0.setPword(pg.randomPassword());
 		ur0.setMsg("Your profile information has been created");
 		ur0.setRole(role);
 		return ur0;
@@ -92,6 +91,11 @@ public class Stubs_Base {
 		} else if (role.equals("customer support")) {
 			new Sb4LoginPage(driver).loginAs(obj1.getMiscUname001(), obj1.getAdvPword());
 		}
+	}
+
+	protected void verifyTestUser(UserRegPOJO obj, TestPOJO obj1) throws InterruptedException {
+		driver.get(obj1.getSbLogOnUrl());
+		new Sb4LoginPage(driver).loginAs(obj.getuName(), obj.getPword()).LogOut();
 	}
 
 	protected void loginAs2(String role, UserRegPOJO obj, TestPOJO obj1) throws InterruptedException {
@@ -131,7 +135,7 @@ public class Stubs_Base {
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		new Sb4LoginPage(driver).loginAsAdmin(obj1.getAdminUName(), obj1.getAdminPword());
+		new Sb4LoginPage(driver).loginAsAdmin(obj1.getAdvUname(), obj1.getAdvPword());
 		driver.get(obj1.getSbPUUrl());
 		String key = new Sb4ProjectUserPage(driver).regNewUser(obj);
 		new Sb4ProjectUserPage(driver).LogOut();
@@ -146,7 +150,7 @@ public class Stubs_Base {
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		new Sb4LoginPage(driver).loginAsAdmin(obj1.getAdminUName(), obj1.getAdminPword());
+		new Sb4LoginPage(driver).loginAsAdmin(obj1.getMiscUname001(), obj1.getMiscPword001());
 		driver.get(obj1.getSbUAUrl());
 		String key = new Sb4UserAdminPage(driver).regNewUser(obj);
 		new Sb4UserAdminPage(driver).LogOut();
@@ -157,32 +161,32 @@ public class Stubs_Base {
 	public void testUsers() throws InstantiationException, IllegalAccessException, ClassNotFoundException,
 			InterruptedException, SQLException {
 		srep = regUserInfo("sales rep");
-		registerProjectUser(srep, tp0);
+		registerProjectUser(srep, testInfo());
 		csup = regUserInfo("customer support");
-		registerProjectUser(csup, tp0);
+		registerProjectUser(csup, testInfo());
 		adm = regUserInfo("administrator");
-		registerProjectUser(adm, tp0);
+		registerProjectUser(adm, testInfo());
 		apr = regUserInfo("approved");
-		registerProjectUser(apr, tp0);
+		registerProjectUser(apr, testInfo());
 		dsr = regUserInfo("approved");
-		registerProjectUser(dsr, tp0);
+		registerProjectUser(dsr, testInfo());
 		edt = regUserInfo("approved");
-		registerProjectUser(edt, tp0);
+		registerProjectUser(edt, testInfo());
 		pho = regUserInfo("approved");
-		registerProjectUser(pho, tp0);
+		registerProjectUser(pho, testInfo());
 	}
 
 	public void afterScenario() throws InterruptedException {
-		userCleanUp(srep, tp0);
-		userCleanUp(csup, tp0);
-		userCleanUp(adm, tp0);
-		userCleanUp(apr, tp0);
-		userCleanUp(dsr, tp0);
-		userCleanUp(edt, tp0);
-		userCleanUp(pho, tp0);
+		userCleanUp(srep, testInfo());
+		userCleanUp(csup, testInfo());
+		userCleanUp(adm, testInfo());
+		userCleanUp(apr, testInfo());
+		userCleanUp(dsr, testInfo());
+		userCleanUp(edt, testInfo());
+		userCleanUp(pho, testInfo());
 	}
-	
-	public static void beforeSuite(){
-		
+
+	public static void beforeSuite() {
+
 	}
 }
