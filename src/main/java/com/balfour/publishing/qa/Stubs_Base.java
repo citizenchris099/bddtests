@@ -33,6 +33,8 @@ public class Stubs_Base {
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
+		tp0 = testInfo();
+		driver.get(tp0.getSbLogOnUrl());
 	}
 
 	protected TestPOJO testInfo() {
@@ -43,6 +45,7 @@ public class Stubs_Base {
 		tp0.setSbPUUrl(new Test_Enviornment().envUrl(slugNAction.getProject_users()));
 		tp0.setSbProjConf(new Test_Enviornment().envUrl(slugNAction.getProject_config()));
 		tp0.setSbUAUrl(new Test_Enviornment().envUrl(slugNAction.getUser_admin()));
+		tp0.setSbPUDyUrl(new Test_Enviornment().envUrl(slugNAction.getProject_view_dynamic()));
 		tp0.setAdvUname("trevorbelmont001");
 		tp0.setAdvPword("Welles113*");
 		tp0.setMiscUname001("veggietester003");
@@ -80,6 +83,7 @@ public class Stubs_Base {
 		obj.setPword(pg.randomPassword());
 		obj.setMsg("Your profile information has been created");
 		obj.setRole(role);
+		obj.setEmailSearch(true);
 		return obj;
 	}
 
@@ -141,6 +145,12 @@ public class Stubs_Base {
 		} else if (role.equals("customer support")) {
 			new Sb4LoginPage(driver).loginAs(obj1.getMiscUname001(), obj1.getMiscPword001());
 		}
+	}
+	
+	protected void loginAs(UserRegPOJO obj, TestPOJO obj1) throws InterruptedException{
+		driver.get(obj1.getSbLogOnUrl());
+		new Sb4LoginPage(driver).loginAs(obj.getuName(), obj.getPword());
+		
 	}
 
 	protected UserRegPOJO verifyTestUser(UserRegPOJO obj, TestPOJO obj1) throws InterruptedException {

@@ -2,14 +2,18 @@ Feature: Log out of Studio Balfour v3
 
   @regression @fu
   Scenario: fake  user roles limited to photographer, designer & editor
-    Given adviser user logged in SB
-    And on project user page
-    When fake option is chosen
-    Then roles are limited to photographer, designer & editor
+    Given logged into SB as an adviser
+    When on PU Grid
+    Then fake user role are limited
 
-  @regression @fu
-  Scenario: adviser can edit fake user from project user grid
-    Given adviser user logged in SB
-    And on project user page
-    When fake option is chosen
-    Then roles are limited to photographer, designer & editor
+  @regression @fu @test
+  Scenario: fake user can log into SB
+    Given fake user
+    When fake user log in
+    Then fake user information is correct
+
+  @test @regression @fu
+  Scenario: fake user role restricted
+    Given fake user
+    When fake user log in
+    Then fake user role is restricted
