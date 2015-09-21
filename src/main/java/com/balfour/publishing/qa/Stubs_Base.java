@@ -57,7 +57,11 @@ public class Stubs_Base {
 	}
 
 	/**
-	 * @param driver
+	 * used to create an object of UserRegPOJO for user testing
+	 * 
+	 * @param role
+	 *            : of the user
+	 * @return : UserRegPOJO
 	 */
 	protected UserRegPOJO regUserInfo(String role) {
 		Page pg = new Page(driver);
@@ -84,6 +88,19 @@ public class Stubs_Base {
 		obj.setMsg("Your profile information has been created");
 		obj.setRole(role);
 		obj.setEmailSearch(true);
+		return obj;
+	}
+
+	protected UserRegPOJO regFakeUserInfo(String role) {
+		Page pg = new Page(driver);
+		UserRegPOJO obj = new UserRegPOJO();
+		obj.setfName(pg.randomFName());
+		obj.setlName(pg.randomLName());
+		obj.setEmail("");
+		obj.setuName(pg.randomUName());
+		obj.setRole(role);
+		obj.setPword(pg.randomPassword()+"123");
+		obj.setProject("Y50061");
 		return obj;
 	}
 
@@ -128,13 +145,12 @@ public class Stubs_Base {
 			throw new RuntimeException("value did not equal fname, lname, email or role");
 		return obj1;
 	}
-	
-	protected void userInfoCompare(UserRegPOJO obj, UserRegPOJO obj1){
-		if(obj.hashCode()!=obj1.hashCode()){
+
+	protected void userInfoCompare(UserRegPOJO obj, UserRegPOJO obj1) {
+		if (obj.hashCode() != obj1.hashCode()) {
 			throw new RuntimeException("User Info did not match");
 		}
 	}
-	
 
 	protected void loginAs(String role, TestPOJO obj1) throws InterruptedException {
 		driver.get(obj1.getSbLogOnUrl());
@@ -146,16 +162,17 @@ public class Stubs_Base {
 			new Sb4LoginPage(driver).loginAs(obj1.getMiscUname001(), obj1.getMiscPword001());
 		}
 	}
-	
-	protected void loginAs(UserRegPOJO obj, TestPOJO obj1) throws InterruptedException{
+
+	protected void loginAs(UserRegPOJO obj, TestPOJO obj1) throws InterruptedException {
 		driver.get(obj1.getSbLogOnUrl());
 		new Sb4LoginPage(driver).loginAs(obj.getuName(), obj.getPword());
-		
+
 	}
 
 	protected UserRegPOJO verifyTestUser(UserRegPOJO obj, TestPOJO obj1) throws InterruptedException {
 		driver.get(obj1.getSbLogOnUrl());
-		UserRegPOJO obj2 = new Sb4LoginPage(driver).loginAs(obj.getuName(), obj.getPword()).GoToMyProfile().checkProfile();
+		UserRegPOJO obj2 = new Sb4LoginPage(driver).loginAs(obj.getuName(), obj.getPword()).GoToMyProfile()
+				.checkProfile();
 		new Sb4ProfilePage(driver).LogOut();
 		return obj2;
 	}

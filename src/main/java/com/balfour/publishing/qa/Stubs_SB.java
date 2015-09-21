@@ -9,6 +9,7 @@ import com.balfour.publishing.qa.pages.sb4.Sb4EditUserPage;
 import com.balfour.publishing.qa.pages.sb4.Sb4HomePage;
 import com.balfour.publishing.qa.pages.sb4.Sb4LoginPage;
 import com.balfour.publishing.qa.pages.sb4.Sb4NewUserRegProf;
+import com.balfour.publishing.qa.pages.sb4.Sb4ProfilePage;
 import com.balfour.publishing.qa.pages.sb4.Sb4ProjectUserPage;
 import com.balfour.publishing.qa.pages.sb4.Sb4UserAdminPage;
 
@@ -113,6 +114,14 @@ public class Stubs_SB {
 		new Sb4UserAdminPage(driver).userFound(ur0).fNameEdit(ur1).LogOut();
 	}
 
+	@When("^edit user first name direclty on PU grid$")
+	public void edit_user_first_name_direclty_on_PU_grid() throws Throwable {
+		ur1 = sb.editUserInfo("fname", ur0);
+		ur1.setEmailSearch(false);
+		ur0.setEmailSearch(false);
+		new Sb4ProjectUserPage(driver).userFound(ur0).fNameEdit(ur1).LogOut();
+	}
+
 	@When("^edit user info$")
 	public void edit_user_info() throws Throwable {
 		ur1 = sb.regUserInfo("photographer");
@@ -129,6 +138,14 @@ public class Stubs_SB {
 		new Sb4UserAdminPage(driver).userFound(ur0).lNameEdit(ur1).LogOut();
 	}
 
+	@When("^edit user last name direclty on PU grid$")
+	public void edit_user_last_name_direclty_on_PU_grid() throws Throwable {
+		ur1 = sb.editUserInfo("lname", ur0);
+		ur1.setEmailSearch(false);
+		ur0.setEmailSearch(false);
+		new Sb4ProjectUserPage(driver).userFound(ur0).lNameEdit(ur1).LogOut();
+	}
+
 	@When("^edit user email direclty on grid$")
 	public void edit_user_email_direclty_on_grid() throws Throwable {
 		ur1 = sb.editUserInfo("email", ur0);
@@ -139,6 +156,14 @@ public class Stubs_SB {
 	public void edit_user_role_direclty_on_grid() throws Throwable {
 		ur1 = sb.editUserInfo("role", ur0);
 		new Sb4UserAdminPage(driver).userFound(ur0).roleEdit(ur1).LogOut();
+	}
+
+	@When("^edit user role direclty on PU grid$")
+	public void edit_user_role_direclty_on_PU_grid() throws Throwable {
+		ur1 = sb.editUserInfo("role", ur0);
+		ur1.setEmailSearch(false);
+		ur0.setEmailSearch(false);
+		new Sb4ProjectUserPage(driver).userFound(ur0).roleEdit(ur1).LogOut();
 	}
 
 	@Then("^edits to user should persist on UA grid$")
@@ -306,24 +331,50 @@ public class Stubs_SB {
 
 	@Given("^fake user$")
 	public void fake_user() throws Throwable {
-		ur0 = sb.regUserInfo("photographer");
+		ur0 = sb.regFakeUserInfo("photographer");
+		ur0.setEmailSearch(false);
 		logged_into_SB_as_an_adviser();
 		on_PU_Grid();
-		new Sb4ProjectUserPage(driver).createFakeUser(ur0, fakeRoles);
+		new Sb4ProjectUserPage(driver).createFakeUser(ur0, fakeRoles).LogOut();
+	}
+
+	@Given("^fake user created$")
+	public void fake_user_created() throws Throwable {
+		fake_user();
+		fake_user_log_in();
+		fake_user_information_is_correct();
 	}
 
 	@When("^fake user log in$")
 	public void fake_user_log_in() throws Throwable {
-		ur3 = sb.verifyTestUser(ur0, tp0);
+		sb.loginAs(ur0, tp0);
 
 	}
 
 	@Then("^fake user information is correct$")
 	public void fake_user_information_is_correct() throws Throwable {
+		ur3 = new Sb4HomePage(driver).GoToMyProfile().checkProfile();
+		new Sb4ProfilePage(driver).LogOut();
 		sb.userInfoCompare(ur3, ur0);
 	}
 
 	@Then("^fake user role is restricted$")
 	public void fake_user_role_is_restricted() throws Throwable {
+		new Sb4HomePage(driver).projInfoChk().LogOut();
+	}
+
+	@Then("^edits to fake user should persist on UA grid$")
+	public void edits_to_fake_user_should_persist_on_UA_grid() throws Throwable {
+		ur1.setEmailSearch(false);
+		edits_to_user_should_persist_on_UA_grid();
+	}
+
+	@Then("^edits to user should persist on PU edit fake user screen$")
+	public void edits_to_user_should_persist_on_PU_edit_fake_user_screen() throws Throwable {
+		logged_into_SB_as_an_adviser();
+		on_PU_Grid();
+		ur2 = new Sb4ProjectUserPage(driver).editFakeUser(ur1).checkEditFakeUser();
+		ur2.setEmail("");
+		sb.userInfoCompare(ur1, ur2);
 	}
 }
