@@ -15,14 +15,14 @@ Feature: Studio Balfour User Admin Screen
     Then user can register to SB
     And user can log into SB
 
-  @ua
+  @ua 
   Scenario: User Admin Grid Search
     Given registered user
     And logged into SB as >adviser
     When on User Admin Grid
     Then user is found User Admin Grid
 
-  @ua
+  @ua 
   Scenario: User Admin Grid Edit First Name persist on grid
     Given registered user
     And logged into SB as >adviser

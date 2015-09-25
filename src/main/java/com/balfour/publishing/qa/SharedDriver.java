@@ -53,7 +53,7 @@ public class SharedDriver extends EventFiringWebDriver {
 
 //	 private static final WebDriver REAL_DRIVER = initLocal();
 //	private static final WebDriver REAL_DRIVER = initRemoteFF(win8, "37.0");
-	private static final WebDriver REAL_DRIVER = initRemoteCh(win10, "44.0");
+	private static final WebDriver REAL_DRIVER = initRemoteCh(win10, "45.0");
 
 	private static final Thread CLOSE_THREAD = new Thread() {
 		@Override

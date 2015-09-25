@@ -11,8 +11,8 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 
 @Cucumber.Options(monochrome = true, features = { "classpath:fakeUser.feature", "classpath:UserAdmin.feature",
-		"classpath:projectUser.feature" }, glue = { "classpath:com.balfour.publishing.qa" }, tags = {
-				"@test" }, format = { "pretty", "html:target/cucumber" }
+		"classpath:ProjUser.feature" }, glue = { "classpath:com.balfour.publishing.qa" }, tags = { "@test" }, format = {
+				"pretty", "html:target/cucumber" }
 
 )
 

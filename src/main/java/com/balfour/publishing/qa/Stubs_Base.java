@@ -99,7 +99,7 @@ public class Stubs_Base {
 		obj.setEmail("");
 		obj.setuName(pg.randomUName());
 		obj.setRole(role);
-		obj.setPword(pg.randomPassword()+"123");
+		obj.setPword(pg.randomPassword()+"1"+"a"+"A");
 		obj.setProject("Y50061");
 		return obj;
 	}

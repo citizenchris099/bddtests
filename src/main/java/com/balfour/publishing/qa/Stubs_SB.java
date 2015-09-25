@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import org.openqa.selenium.WebDriver;
 
 import com.balfour.publishing.TestPOJO;
+import com.balfour.publishing.qa.pages.Page;
 import com.balfour.publishing.qa.pages.sb4.Sb4EditUserPage;
 import com.balfour.publishing.qa.pages.sb4.Sb4HomePage;
 import com.balfour.publishing.qa.pages.sb4.Sb4LoginPage;
@@ -319,11 +320,6 @@ public class Stubs_SB {
 		sb.loginAs("adviser", tp0);
 	}
 
-	@When("^on PU Grid$")
-	public void on_PU_Grid() throws Throwable {
-		driver.get(tp0.getSbPUUrl());
-	}
-
 	@Then("^fake user role are limited$")
 	public void fake_user_role_are_limited() throws Throwable {
 		new Sb4ProjectUserPage(driver).checkFakeUserRoles(fakeRoles).LogOut();
@@ -376,5 +372,136 @@ public class Stubs_SB {
 		ur2 = new Sb4ProjectUserPage(driver).editFakeUser(ur1).checkEditFakeUser();
 		ur2.setEmail("");
 		sb.userInfoCompare(ur1, ur2);
+	}
+
+	@When("^edit user info on PU edit fake user screen$")
+	public void edit_user_info_on_PU_edit_fake_user_screen() throws Throwable {
+		ur1 = sb.regFakeUserInfo("photographer");
+		ur1.setEmailSearch(false);
+		ur1.setuName(ur0.getuName());
+		ur1.setPword(ur0.getPword());
+		ur1.setMsg("profile information has been updated");
+		new Sb4ProjectUserPage(driver).editFakeUser(ur0).successfullUpdate(ur1).LogOut();
+	}
+
+	@Given("^PU disabled fake user can't log in$")
+	public void PU_disabled_fake_user_can_t_log_in() throws Throwable {
+		fake_user_created();
+		logged_into_SB_as_an_adviser();
+		on_PU_Grid();
+		disable_user_from_PU();
+		user_cannot_log_into_SB();
+	}
+
+	@Given("^UA disabled fake user can't log in$")
+	public void UA_disabled_fake_user_can_t_log_in() throws Throwable {
+		fake_user_created();
+		logged_into_SB_as_adviser();
+		on_User_Admin_Grid();
+		disable_user();
+		user_cannot_log_into_SB();
+	}
+
+	@When("^edit fake user info on UA edit fake user screen$")
+	public void edit_fake_user_info_on_UA_edit_fake_user_screen() throws Throwable {
+		ur1 = sb.regFakeUserInfo("photographer");
+		ur1.setEmailSearch(false);
+		ur1.setuName(ur0.getuName());
+		ur1.setPword(ur0.getPword());
+		ur1.setMsg("profile information has been updated");
+		new Sb4UserAdminPage(driver).editFakeUser(ur0).successfullUpdate(ur1).LogOut();
+	}
+
+	/**
+	 * project user
+	 */
+
+	@Then("^user is found on PU Grid$")
+	public void user_is_found_on_PU_Grid() throws Throwable {
+		new Sb4ProjectUserPage(driver).userFound(ur0);
+	}
+
+	@When("^disable user from PU$")
+	public void disable_user_from_PU() throws Throwable {
+		new Sb4ProjectUserPage(driver).userFound(ur0);
+		ur1 = sb.editUserInfo("role", ur0);
+		ur1.setRole("disabled");
+		new Sb4ProjectUserPage(driver).roleEdit(ur1).LogOut();
+	}
+
+	@When("^on PU Grid$")
+	public void on_PU_Grid() throws Throwable {
+		driver.get(tp0.getSbPUUrl());
+	}
+
+	@When("^user re-enabled from PU$")
+	public void user_re_enabled_from_PU() throws Throwable {
+		logged_into_SB_as_an_adviser();
+		on_PU_Grid();
+		new Sb4ProjectUserPage(driver).userFound(ur1).roleEdit(ur0).LogOut();
+	}
+
+	@When("^create PU user register$")
+	public void create_PU_user_register() throws Throwable {
+		ur0 = sb.regUserInfo("photographer");
+		key = new Sb4ProjectUserPage(driver).regNewUser(ur0);
+		new Sb4ProjectUserPage(driver).LogOut();
+	}
+
+	@Given("^registered PU user$")
+	public void registered_PU_user() throws Throwable {
+		ur0 = sb.regUserInfo("photographer");
+		sb.registerProjectUser(ur0, tp0);
+		ur3 = sb.verifyTestUser(ur0, tp0);
+		sb.userInfoCompare(ur3, ur0);
+	}
+
+	@Then("^edits to user should persist on PU edit user screen$")
+	public void edits_to_user_should_persist_on_PU_edit_user_screen() throws Throwable {
+		logged_into_SB_as_an_adviser();
+		on_PU_Grid();
+		ur2 = new Sb4ProjectUserPage(driver).editUser(ur1).checkEditUser();
+		ur2.setEmail("");
+		sb.userInfoCompare(ur1, ur2);
+	}
+
+	@When("^edit user info on PU edit user screen$")
+	public void edit_user_info_on_PU_edit_user_screen() throws Throwable {
+		ur1 = sb.regUserInfo("photographer");
+		ur1.setEmailSearch(false);
+		ur1.setuName(ur0.getuName());
+		ur1.setPword(ur0.getPword());
+		ur1.setMsg("profile information has been updated");
+		new Sb4ProjectUserPage(driver).editUser(ur0).successfullUpdate(ur1).LogOut();
+	}
+
+	/**
+	 * profile
+	 */
+
+	@When("^fake user update profile$")
+	public void fake_user_update_profile() throws Throwable {
+		ur1 = sb.regFakeUserInfo("photographer");
+		ur1.setEmailSearch(false);
+		ur1.setuName(ur0.getuName());
+		ur1.setPword(ur0.getPword());
+		ur1.setMsg("profile information has been updated");
+		new Sb4HomePage(driver).GoToMyProfile().updateFakeUserProfile(ur1).LogOut();
+	}
+
+	@When("^user update password$")
+	public void user_update_password() throws Throwable {
+		Page pg = new Page(driver);
+		ur1 = sb.regUserInfo("photographer");
+		ur1.setEmailSearch(false);
+		ur1.setuName(ur0.getuName());
+		ur1.setPword(pg.randomPassword() + "2" + "b" + "B");
+		ur1.setMsg("profile information has been updated");
+		new Sb4HomePage(driver).GoToMyProfile().updatePword(ur1).LogOut();
+	}
+
+	@Then("^user can log in with updated password$")
+	public void user_can_log_in_with_updated_password() throws Throwable {
+		sb.verifyTestUser(ur1, tp0);
 	}
 }
