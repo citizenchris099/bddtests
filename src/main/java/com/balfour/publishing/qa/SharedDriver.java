@@ -158,7 +158,7 @@ public class SharedDriver extends EventFiringWebDriver {
 		caps.setCapability("browserName", "Chrome");
 		caps.setCapability("tags", new String[] { "Chrome", Vers, OS });
 		caps.setCapability("name", "BDD Test Suite");
-		caps.setCapability("maxDuration", 7600);
+		caps.setCapability("maxDuration", 10800);
 
 		try {
 			rd = new RemoteWebDriver(

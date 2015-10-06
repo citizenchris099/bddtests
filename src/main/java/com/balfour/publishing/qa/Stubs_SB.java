@@ -39,6 +39,7 @@ public class Stubs_SB {
 	String p611424Href = "75c6ef1ddc9647cab823a8403c00eb91";
 	String key = null;
 	String[] fakeRoles = { "editor", "designer", "photographer" };
+	String[] projects = { "Y50061", "X50061", "450061", "S50061", "B50061", "M50061" };
 
 	public Stubs_SB(SharedDriver driver) throws InterruptedException {
 		this.driver = driver;
@@ -96,6 +97,11 @@ public class Stubs_SB {
 
 	@Given("^logged into SB as >adviser$")
 	public void logged_into_SB_as_adviser() throws Throwable {
+		sb.loginAs("customer support", tp0);
+	}
+
+	@When("^logged into SB as Customer Support$")
+	public void logged_into_SB_as_Customer_Support() throws Throwable {
 		sb.loginAs("customer support", tp0);
 	}
 
@@ -199,7 +205,7 @@ public class Stubs_SB {
 	public void edits_to_user_role_should_persist_on_Project_and_Role_page() throws Throwable {
 		sb.loginAs("customer support", tp0);
 		driver.get(tp0.getSbPUUrl());
-		new Sb4ProjectUserPage(driver).editUser(ur1).goToProjNRole().projRoleCheck(y50061Href, ur1);
+		new Sb4ProjectUserPage(driver).editUser(ur1).goToProjNRole().projRoleCheck(y50061Href, ur1).LogOut();
 	}
 
 	@Then("^edits to user role should persist on all projects on Project and Role page$")
@@ -309,6 +315,7 @@ public class Stubs_SB {
 		create_user_register();
 		logged_into_SB_as_adviser();
 		on_User_Admin_Grid();
+		ur0.setuName("");
 	}
 
 	/**
@@ -475,6 +482,47 @@ public class Stubs_SB {
 		new Sb4ProjectUserPage(driver).editUser(ur0).successfullUpdate(ur1).LogOut();
 	}
 
+	@Then("^button to add all projects should appear on PU edit user screen$")
+	public void button_to_add_all_projects_should_appear_on_PU_edit_user_screen() throws Throwable {
+		sb.loginAs("customer support", tp0);
+		driver.get(tp0.getSbUAUrl());
+		new Sb4ProjectUserPage(driver).editUser(ur0).addProjectsChk().LogOut();
+	}
+
+	@Given("^PU disabled user can't log in$")
+	public void PU_disabled_user_can_t_log_in() throws Throwable {
+		registered_PU_user();
+		logged_into_SB_as_an_adviser();
+		on_PU_Grid();
+		disable_user_from_PU();
+		user_cannot_log_into_SB();
+	}
+
+	@Given("^PU user register$")
+	public void PU_user_register() throws Throwable {
+		logged_into_SB_as_an_adviser();
+		on_PU_Grid();
+		create_PU_user_register();
+		logged_into_SB_as_an_adviser();
+		on_PU_Grid();
+		ur0.setuName("");
+	}
+
+	@When("^edit user email direclty on PU grid$")
+	public void edit_user_email_direclty_on_PU_grid() throws Throwable {
+		ur1 = sb.editUserInfo("email", ur0);
+		new Sb4ProjectUserPage(driver).userFound(ur0).emailEdit(ur1).LogOut();
+	}
+
+	@Then("^adviser appears on PU grid of all projects$")
+	public void adviser_appears_on_PU_grid_of_all_projects() throws Throwable {
+
+		for (String st : projects) {
+			new Sb4HomePage(driver).ChangeProject2(st).goToProjInfo().goToProjUsers().userFound(ur0).GoHome();
+		}
+		new Sb4HomePage(driver).LogOut();
+	}
+
 	/**
 	 * profile
 	 */
@@ -504,4 +552,9 @@ public class Stubs_SB {
 	public void user_can_log_in_with_updated_password() throws Throwable {
 		sb.verifyTestUser(ur1, tp0);
 	}
+
+	/**
+	 * proj & roles
+	 */
+
 }

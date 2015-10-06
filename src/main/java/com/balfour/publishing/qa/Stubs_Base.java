@@ -9,6 +9,7 @@ import com.balfour.publishing.TestPOJO;
 import com.balfour.publishing.Test_Enviornment;
 import com.balfour.publishing.Test_EnviornmentPOJO;
 import com.balfour.publishing.qa.pages.Page;
+import com.balfour.publishing.qa.pages.sb4.Sb4HomePage;
 import com.balfour.publishing.qa.pages.sb4.Sb4LoginPage;
 import com.balfour.publishing.qa.pages.sb4.Sb4NewUserRegProf;
 import com.balfour.publishing.qa.pages.sb4.Sb4ProfilePage;
@@ -30,8 +31,8 @@ public class Stubs_Base {
 	@Before
 	public void testSetup() {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-		driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+		driver.manage().timeouts().setScriptTimeout(60, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		tp0 = testInfo();
 		driver.get(tp0.getSbLogOnUrl());
@@ -99,7 +100,7 @@ public class Stubs_Base {
 		obj.setEmail("");
 		obj.setuName(pg.randomUName());
 		obj.setRole(role);
-		obj.setPword(pg.randomPassword()+"1"+"a"+"A");
+		obj.setPword(pg.randomPassword() + "1" + "a" + "A");
 		obj.setProject("Y50061");
 		return obj;
 	}
@@ -192,6 +193,7 @@ public class Stubs_Base {
 		.deleteUser(obj.getEmail()).finDeleteUser().adminLogOut();
 
 	}
+
 
 	/**
 	 * 

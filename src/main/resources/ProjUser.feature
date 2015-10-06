@@ -7,7 +7,7 @@ Feature: Studio Balfour User Admin Screen
     And create PU user register
     Then user can register to SB
 
-  @pu @regression
+  @pu @regression @user
   Scenario: PU Register User can log in
     Given logged into SB as an adviser
     When on PU Grid
@@ -110,7 +110,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user role direclty on PU grid
     Then edits to user should persist on user profile
 
-  @pu @regression @test
+  @pu @regression
   Scenario: PU Edit persist on PU grid
     Given registered PU user
     And logged into SB as an adviser
@@ -118,7 +118,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user info on PU edit user screen
     Then edits to user should persist on PU grid
 
-  @pu @regression @test
+  @pu @regression
   Scenario: PU Edit persist on user profile
     Given registered PU user
     And logged into SB as an adviser
@@ -126,7 +126,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user info on PU edit user screen
     Then edits to user should persist on user profile
 
-  @pu @regression @test
+  @pu @regression @fail
   Scenario: PU Edit persist on PU edit user screen
     Given registered PU user
     And logged into SB as an adviser
@@ -134,125 +134,101 @@ Feature: Studio Balfour User Admin Screen
     And edit user info on PU edit user screen
     Then edits to user should persist on PU edit user screen
 
-  @ua
-  Scenario: User Admin Edit persist on PU
-    Given registered user
-    And logged into SB as >adviser
-    When on User Admin Grid
-    And edit user info
-    Then edits to user should persist on PU grid
+  @ua @pu @regression
+  Scenario: PU Edit persist on UA grid
+    Given registered PU user
+    And logged into SB as an adviser
+    When on PU Grid
+    And edit user info on PU edit user screen
+    Then edits to user should persist on UA grid
 
-  @ua
-  Scenario: Base Role Change
-    Given registered user
-    And logged into SB as >adviser
-    When on User Admin Grid
-    And edit user role direclty on grid
+  @pu @regression
+  Scenario: Role Change persist on Proj and Role
+    Given registered PU user
+    And logged into SB as an adviser
+    When on PU Grid
+    And edit user role direclty on PU grid
     Then edits to user role should persist on Project and Role page
 
-  @ua
-  Scenario: Base Role Change
-    Given registered user with multiple projects
-    And logged into SB as >adviser
-    When on User Admin Grid
-    And edit user role direclty on grid
-    Then edits to user role should persist on all projects on Project and Role page
-
-  @ua
+  @pu @regression @fail
   Scenario: button to add all projects appears
     Given registered adviser
     And logged into SB as >adviser
     When add new project to adviser
-    Then button to add all projects should appear on edit user screen
+    Then button to add all projects should appear on PU edit user screen
 
-  @ua
-  Scenario: adviser inherits all projects of new school
-    Given registered adviser
-    And logged into SB as >adviser
-    When add new project to adviser
-    Then button to add all projects should appear on edit user screen
-    And when clicked user inherits all projects of new school
-
-  @ua
-  Scenario: >adviser role changed to adviser button to add all projects appears
-    Given registered user
-    And logged into SB as >adviser
-    When on User Admin Grid
-    And edit user role to adviser
-    Then button to add all projects should appear on edit user screen
-
-  @ua
-  Scenario: default project reflected on UA grid
-    Given registered user with multiple projects
-    When user change project
-    Then default proj and role is reflected correctly on the User Admin Grid
-
-  @ua
+  @pu @regression
   Scenario: disabled user cannot log in
-    Given registered user
-    And logged into SB as >adviser
-    When on User Admin Grid
-    And disable user
+    Given registered PU user
+    And logged into SB as an adviser
+    When on PU Grid
+    And disable user from PU
     Then user cannot log into SB
 
-  @ua
+  @pu @regression
   Scenario: disabled user displays on PU gird
-    Given registered user
-    And logged into SB as >adviser
-    When on User Admin Grid
-    And disable user
+    Given registered PU user
+    And logged into SB as an adviser
+    When on PU Grid
+    And disable user from PU
     Then edits to user should persist on PU grid
 
-  @ua
-  Scenario: user re-enabled can log in
-    Given disabled user can't log in
+  @pu @regression @fail
+  Scenario: PU user re-enabled can log in
+    Given PU disabled user can't log in
     When user re-enabled
     Then user can log into SB
 
-  @ua
-  Scenario: edit user register first name persist on UA
-    Given user register
-    When edit user first name direclty on grid
-    Then edits to user should persist on UA grid
-
-  @ua
-  Scenario: edit user register last name persist on UA
-    Given user register
-    When edit user last name direclty on grid
-    Then edits to user should persist on UA grid
-
-  @ua
-  Scenario: edit user register email persist on UA
-    Given user register
-    When edit user email direclty on grid
-    Then edits to user should persist on UA grid
-
-  @ua
-  Scenario: edit user register role persist on UA
-    Given user register
-    When edit user role direclty on grid
-    Then edits to user should persist on UA grid
-
-  @ua
-  Scenario: edit user register first name persist on PU
-    Given user register
-    When edit user first name direclty on grid
+  @pu @regression
+  Scenario: edit PU user register first name persist on PU
+    Given PU user register
+    When edit user first name direclty on PU grid
     Then edits to user should persist on PU grid
 
-  @ua
-  Scenario: edit user register last name persist on PU
-    Given user register
-    When edit user last name direclty on grid
+  @pu @regression
+  Scenario: edit PU user register last name persist on PU
+    Given PU user register
+    When edit user last name direclty on PU grid
     Then edits to user should persist on PU grid
 
-  @ua
+  @pu @regression
   Scenario: edit user register email persist on PU
-    Given user register
-    When edit user email direclty on grid
+    Given PU user register
+    When edit user email direclty on PU grid
     Then edits to user should persist on PU grid
 
-  @ua
-  Scenario: edit user register role persist on PU
-    Given user register
-    When edit user role direclty on grid
+  @pu @regression
+  Scenario: PU edit user register role persist on PU
+    Given PU user register
+    When edit user role direclty on PU grid
     Then edits to user should persist on PU grid
+
+  @pu @regression @ua
+  Scenario: edit user register first name persist on UA
+    Given PU user register
+    When edit user first name direclty on PU grid
+    Then edits to user should persist on UA grid
+
+  @pu @regression @ua
+  Scenario: edit user register last name persist on UA
+    Given PU user register
+    When edit user last name direclty on PU grid
+    Then edits to user should persist on UA grid
+
+  @ua @pu @regression @ua
+  Scenario: edit user register email persist on UA
+    Given PU user register
+    When edit user email direclty on PU grid
+    Then edits to user should persist on UA grid
+
+  @ua @pu @regression @ua
+  Scenario: edit user register role persist on UA
+    Given PU user register
+    When edit user role direclty on PU grid
+    Then edits to user should persist on UA grid
+
+  @pu @regression @test
+  Scenario: adviser appears on PU grid for all projects
+    Given registered adviser
+    When logged into SB as Customer Support
+    Then adviser appears on PU grid of all projects

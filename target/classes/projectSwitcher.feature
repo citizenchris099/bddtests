@@ -1,9 +1,9 @@
 Feature: SBv3 Project User Page
 
- @smoke @regression @pw
-  Scenario: correct after navigating to & from sales dashbaord
-    Given user w/access to all projects logged into system
-    When switch project
-    And navigate to sales db
-    And navigate back home
-    Then correct proj loaded in proj switcher
+ @ua @regression
+  Scenario: user with finite project access switch projects
+    Given registered user with multiple projects
+    And logged into SB as user with multiple projects
+    When User switch Projects
+    Then edits to user role should persist on all projects on Project and Role page
+
