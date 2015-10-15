@@ -10,6 +10,7 @@ import com.balfour.publishing.qa.pages.sb4.Sb4EditUserPage;
 import com.balfour.publishing.qa.pages.sb4.Sb4HomePage;
 import com.balfour.publishing.qa.pages.sb4.Sb4LoginPage;
 import com.balfour.publishing.qa.pages.sb4.Sb4NewUserRegProf;
+import com.balfour.publishing.qa.pages.sb4.Sb4OCOListPage;
 import com.balfour.publishing.qa.pages.sb4.Sb4ProfilePage;
 import com.balfour.publishing.qa.pages.sb4.Sb4ProjectUserPage;
 import com.balfour.publishing.qa.pages.sb4.Sb4UserAdminPage;
@@ -30,6 +31,12 @@ public class Stubs_SB {
 	UserRegPOJO ur1 = null;
 	UserRegPOJO ur2 = null;
 	UserRegPOJO ur3 = null;
+	OCOPOJO oco = null;
+	OCOPOJO oco1 = null;
+	OCOPOJO oco2 = null;
+	OCOPOJO oco3 = null;
+	OCOPOJO oco4 = null;
+	OCOPOJO oco5 = null;
 	String y50061Href = "ab0355977d024f63bf78351e9e78b80f";
 	String y50062Href = "ae786d01240d445289eeb0beaa851427";
 	String p211424Href = "526a31c85dd140398766c6f3ff1bba72";
@@ -557,4 +564,33 @@ public class Stubs_SB {
 	 * proj & roles
 	 */
 
+	/**
+	 * oco
+	 */
+
+	@Given("^on OCO list page$")
+	public void on_OCO_list_page() throws Throwable {
+		sb.loginAs("customer support", tp0);
+		driver.get(tp0.getSbOCOurl());
+	}
+
+	@When("^create OCO using SaN Cash PiF Stu$")
+	public void create_OCO_using_SaN_Cash_PiF_Stu() throws Throwable {
+		oco = sb.createOCOInfo("Cash", "5000", "5000", false);
+		oco1 = sb.oCOInfoClone(oco);
+		new Sb4OCOListPage(driver).createNewOrder().saveNewViewOCO(oco).getOCOInfo(oco1);
+	}
+
+	@Then("^view OCO info is correct$")
+	public void view_OCO_info_is_correct() throws Throwable {
+		sb.ocoInfoCompare(oco, oco1);
+	}
+
+	@Then("^edit OCO info is correct$")
+	public void edit_OCO_info_is_correct() throws Throwable {
+		oco2 = sb.oCOInfoClone(oco1);
+		driver.get(tp0.getSbOCOurl());
+		new Sb4OCOListPage(driver).editOCO(oco1).getEditOCOInfo(oco2);
+		sb.ocoInfoCompare(oco1, oco2);
+	}
 }

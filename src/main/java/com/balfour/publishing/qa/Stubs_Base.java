@@ -1,6 +1,7 @@
 package com.balfour.publishing.qa;
 
 import java.sql.SQLException;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -21,6 +22,12 @@ import cucumber.api.java.Before;
 public class Stubs_Base {
 
 	WebDriver driver;
+	protected Page pg = new Page(driver);
+	protected String[] add2 = { "apt 101", "apt 202", "apt 303", "apt 404" };
+	protected String[] city = { "Pirate Cove", "Ninja Way", "Mutant Road", "Alien Drive" };
+	protected String[] zip = { "90210", "79936", "75287", "60629" };
+	protected String[] grade = { "Pre-K", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
+			"Undergraduate", "Post-Graduate", "Doctorate", "Alumni", "Faculty", "Yearbook Staff" };
 
 	protected TestPOJO tp0 = null;
 
@@ -47,6 +54,7 @@ public class Stubs_Base {
 		tp0.setSbProjConf(new Test_Enviornment().envUrl(slugNAction.getProject_config()));
 		tp0.setSbUAUrl(new Test_Enviornment().envUrl(slugNAction.getUser_admin()));
 		tp0.setSbPUDyUrl(new Test_Enviornment().envUrl(slugNAction.getProject_view_dynamic()));
+		tp0.setSbOCOurl(new Test_Enviornment().envUrl(slugNAction.getOco()));
 		tp0.setAdvUname("trevorbelmont001");
 		tp0.setAdvPword("Welles113*");
 		tp0.setMiscUname001("veggietester003");
@@ -65,7 +73,6 @@ public class Stubs_Base {
 	 * @return : UserRegPOJO
 	 */
 	protected UserRegPOJO regUserInfo(String role) {
-		Page pg = new Page(driver);
 		UserRegPOJO obj = new UserRegPOJO();
 		obj.setfName(pg.randomFName());
 		obj.setlName(pg.randomLName());
@@ -75,7 +82,7 @@ public class Stubs_Base {
 		obj.setDb_pword("prat0ri0n");
 		obj.setDb_reg_key("user_register_key");
 		obj.setEmail(pg.emailGen002());
-		obj.setProject("Y50061");
+		obj.setProject("550074");
 		obj.setPhone(pg.randomPhone());
 		obj.setfBook(pg.randomUName());
 		obj.setGoogle(pg.randomUName());
@@ -93,7 +100,6 @@ public class Stubs_Base {
 	}
 
 	protected UserRegPOJO regFakeUserInfo(String role) {
-		Page pg = new Page(driver);
 		UserRegPOJO obj = new UserRegPOJO();
 		obj.setfName(pg.randomFName());
 		obj.setlName(pg.randomLName());
@@ -115,7 +121,6 @@ public class Stubs_Base {
 	 * @return
 	 */
 	protected UserRegPOJO editUserInfo(String value, UserRegPOJO obj) {
-		Page pg = new Page(driver);
 		UserRegPOJO obj1 = new UserRegPOJO();
 		obj1.setfName(obj.getfName());
 		obj1.setlName(obj.getlName());
@@ -150,6 +155,12 @@ public class Stubs_Base {
 	protected void userInfoCompare(UserRegPOJO obj, UserRegPOJO obj1) {
 		if (obj.hashCode() != obj1.hashCode()) {
 			throw new RuntimeException("User Info did not match");
+		}
+	}
+	
+	protected void ocoInfoCompare(OCOPOJO obj, OCOPOJO obj1) {
+		if (obj.hashCode() != obj1.hashCode()) {
+			throw new RuntimeException("OCO Info did not match");
 		}
 	}
 
@@ -194,7 +205,6 @@ public class Stubs_Base {
 
 	}
 
-
 	/**
 	 * 
 	 * @param arg1
@@ -227,5 +237,212 @@ public class Stubs_Base {
 		new Sb4UserAdminPage(driver).LogOut();
 		driver.get(key);
 		new Sb4NewUserRegProf(driver).doReg(obj, true);
+	}
+
+	/**
+	 * used to create initial OCO info
+	 * 
+	 * @param payType
+	 *            : accepted values are "Comp","Cash" and "Check"
+	 * @param price
+	 *            : of the item to be ordered
+	 * @param paid
+	 * @param fulOrder
+	 *            : Boolean that denotes whether to complete the full form. True
+	 *            = fill out purchaser and False = fill out only student
+	 * @return : OCOPOJO
+	 */
+	protected OCOPOJO createOCOInfo(String payType, String price, String paid, Boolean fulOrder) {
+		OCOPOJO oco = new OCOPOJO();
+		oco.setDate(pg.curDate());
+		oco.setFilloutPurchaser(fulOrder);
+		if (fulOrder == true) {
+			setPurchaser(oco);
+		}
+		setStudent(oco);
+		oco.setPrice(price);
+		oco.setOrderTotal(oco.getPrice());
+		oco.setQuan("1");
+		oco.setName(oco.getsFName());
+		oco.setPaymentMade(false);
+		oco.setCheck(false);
+		setPayment(payType, paid, oco);
+		int ocoprice = Integer.parseInt(oco.getPrice());
+		int ocopaid = Integer.parseInt(oco.getaPaid());
+		if (ocopaid < ocoprice & !payType.equals("Comp")) {
+			oco.setBalStatus("Existing Balance");
+			int bal = ocoprice - ocopaid;
+			oco.setBalance(String.valueOf(bal));
+		} else if (ocopaid == ocoprice & !payType.equals("Comp")) {
+			oco.setBalStatus("Paid in Full");
+			oco.setBalance("000");
+		} else if (payType.equals("Comp")) {
+			oco.setBalStatus("Complimentary");
+			oco.setBalance("Complimentary");
+		}
+		return oco;
+	}
+
+	/**
+	 * used to clone the OCOPOJO passed in.
+	 * 
+	 * @param obj
+	 *            : OCOPOJO
+	 * @return : OCOPOJO
+	 */
+	protected OCOPOJO oCOInfoClone(OCOPOJO obj) {
+		OCOPOJO oco = new OCOPOJO();
+		oco.setFilloutPurchaser(obj.getFilloutPurchaser());
+		if (oco.getFilloutPurchaser() == true) {
+			oco.setpFName(obj.getpFName());
+			oco.setpLName(obj.getpLName());
+			oco.setEmail(obj.getEmail());
+			oco.setAdd1(obj.getAdd1());
+			oco.setAdd2(obj.getAdd2());
+			oco.setCity(obj.getCity());
+			oco.setZip(obj.getZip());
+			oco.setState(obj.getState());
+			oco.setPhone(obj.getPhone());
+		}
+		oco.setsFName(obj.getsFName());
+		oco.setsLName(obj.getsLName());
+		oco.setGrade(obj.getGrade());
+		oco.setStudentEmail(obj.getStudentEmail());
+		oco.setPrice(obj.getPrice());
+		oco.setOrderTotal(obj.getPrice());
+		oco.setQuan(obj.getQuan());
+		oco.setName(obj.getName());
+		oco.setPaymentMade(obj.getPaymentMade());
+		oco.setCheck(obj.getCheck());
+		oco.setpType(obj.getpType());
+		oco.setcNum(obj.getcNum());
+		oco.setaPaid(obj.getaPaid());
+		oco.setBalStatus(obj.getBalStatus());
+		oco.setBalance(obj.getBalance());
+		oco.setDate(obj.getDate());
+		oco.setpDate(obj.getpDate());
+		oco.setaPType(obj.getaPType());
+		oco.setaAPaid(obj.getaAPaid());
+		oco.setnBalance(obj.getnBalance());
+		return oco;
+	}
+
+	/**
+	 * modifies the OCOPOJO passed in to contain unique information used in
+	 * testing OCO edits.
+	 * 
+	 * @param obj
+	 *            : OCOPOJO
+	 * @param payment
+	 *            : Boolean to determine if a additional payment is made. true =
+	 *            make a payment, false = do not
+	 * @param edit
+	 *            : accepted values are "student", "purchaser" and "both".
+	 *            denotes the scope of what will be edited in form section of
+	 *            the order.
+	 * @param pType
+	 *            : type of additional payment made
+	 * @param amt
+	 *            : amount of additional payment
+	 */
+	protected void createOCOEditInfo(OCOPOJO obj, Boolean payment, String edit, String pType, String amt) {
+		System.out.println("createOCOEditInfo  payment 1 = " + obj.getPaymentMade());
+		if (payment == true) {
+			obj.setPaymentMade(true);
+			System.out.println("createOCOEditInfo  payment 2 = " + obj.getPaymentMade());
+			setPayment(pType, amt, obj);
+		} else
+			System.out.println("you failed");
+		if (edit.equals("student")) {
+			obj.setFilloutPurchaser(false);
+			setStudent(obj);
+		} else if (edit.equals("purchaser")) {
+			obj.setFilloutPurchaser(true);
+			setPurchaser(obj);
+		} else if (edit.equals("both")) {
+			obj.setFilloutPurchaser(true);
+			setStudent(obj);
+			setPurchaser(obj);
+		}
+	}
+
+	/**
+	 * used to set the information about a purchaser to be used in various OCO
+	 * tests
+	 * 
+	 * @param oco
+	 *            : OCOPOJO
+	 */
+	protected void setPurchaser(OCOPOJO obj) {
+
+		obj.setpFName(pg.randomFName());
+		obj.setpLName(pg.randomLName());
+		obj.setEmail(pg.emailGen002());
+		obj.setAdd1("1234 " + pg.randomNames(5));
+		obj.setAdd2(add2[randomIndex(add2)]);
+		obj.setCity(city[randomIndex(city)]);
+		obj.setZip(zip[randomIndex(zip)]);
+		obj.setState("TX");
+		obj.setPhone(pg.randomPhone());
+	}
+
+	/**
+	 * used to set the student info
+	 * 
+	 * @param oco
+	 */
+	protected void setStudent(OCOPOJO obj) {
+		obj.setsFName(pg.randomFName());
+		obj.setsLName(pg.randomLName());
+		obj.setGrade(grade[randomIndex(grade)]);
+		obj.setStudentEmail(pg.emailGen002());
+	}
+
+	/**
+	 * used to set the payment information of an OCO
+	 * 
+	 * @param payType
+	 *            : accepts "Check", "Cash" and "Comp"
+	 * @param paid
+	 *            : Amount of payment
+	 * @param oco
+	 *            : OCOPOJO
+	 */
+	protected void setPayment(String payType, String paid, OCOPOJO obj) {
+		if (obj.getPaymentMade() == false) {
+			if (payType.equals("Check")) {
+				obj.setpType("Check");
+				obj.setCheck(true);
+				obj.setcNum(pg.randomPhone());
+			} else if (!payType.equals("Check")) {
+				obj.setpType(payType);
+			}
+			obj.setaPType(obj.getpType());
+			obj.setaPaid(paid);
+			int ocoprice = Integer.parseInt(obj.getPrice());
+			int ocopaid = Integer.parseInt(obj.getaPaid());
+			int bal = ocoprice - ocopaid;
+			obj.setBalance(String.valueOf(bal));
+		} else if (obj.getPaymentMade() == true) {
+			if (payType.equals("Check")) {
+				obj.setaPType("Check");
+				obj.setCheck(true);
+				obj.setcNum(pg.randomPhone());
+			} else if (!payType.equals("Check")) {
+				obj.setaPType(payType);
+			}
+			obj.setpDate(pg.curDate());
+			obj.setaAPaid(paid);
+			int ocoprice = Integer.parseInt(obj.getPrice());
+			int ocopaid = Integer.parseInt(obj.getaPaid());
+			int ocoNpaid = Integer.parseInt(obj.getaAPaid());
+			int bal = ocoprice - ocopaid - ocoNpaid;
+			obj.setnBalance(String.valueOf(bal));
+		}
+	}
+
+	protected int randomIndex(String[] array) {
+		Random random = new Random();
+		return random.nextInt(array.length);
 	}
 }
