@@ -76,11 +76,6 @@ public class Stubs_Base {
 		UserRegPOJO obj = new UserRegPOJO();
 		obj.setfName(pg.randomFName());
 		obj.setlName(pg.randomLName());
-		obj.setStatement("SELECT user_register_key FROM b4pub.user_register where user_register_email = ?");
-		obj.setDb_url("jdbc:mysql://pub-constellation-qa-db-01.ckdfohchwkze.us-east-1.rds.amazonaws.com:3306/b4pub");
-		obj.setDb_username("vpc_dbuser");
-		obj.setDb_pword("prat0ri0n");
-		obj.setDb_reg_key("user_register_key");
 		obj.setEmail(pg.emailGen002());
 		obj.setProject("550074");
 		obj.setPhone(pg.randomPhone());
