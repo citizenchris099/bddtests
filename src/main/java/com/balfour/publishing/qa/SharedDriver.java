@@ -139,7 +139,7 @@ public class SharedDriver extends EventFiringWebDriver {
 		try {
 			rd = new RemoteWebDriver(
 					new URL(
-							"http://citizenchris:a8f0eeb8-bb02-4788-b6d1-3680f480930c@ondemand.saucelabs.com:80/wd/hub"),
+							"http://example@ondemand.saucelabs.com:80/wd/hub"),
 					caps);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -163,7 +163,7 @@ public class SharedDriver extends EventFiringWebDriver {
 		try {
 			rd = new RemoteWebDriver(
 					new URL(
-							"http://citizenchris:a8f0eeb8-bb02-4788-b6d1-3680f480930c@ondemand.saucelabs.com:80/wd/hub"),
+							"http://example@ondemand.saucelabs.com:80/wd/hub"),
 					caps);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -185,7 +185,7 @@ public class SharedDriver extends EventFiringWebDriver {
 		try {
 			rd = new RemoteWebDriver(
 					new URL(
-							"http://citizenchris:a8f0eeb8-bb02-4788-b6d1-3680f480930c@ondemand.saucelabs.com:80/wd/hub"),
+							"http://example@ondemand.saucelabs.com:80/wd/hub"),
 					caps);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -209,7 +209,7 @@ public class SharedDriver extends EventFiringWebDriver {
 		try {
 			rd = new RemoteWebDriver(
 					new URL(
-							"http://citizenchris:a8f0eeb8-bb02-4788-b6d1-3680f480930c@ondemand.saucelabs.com:80/wd/hub"),
+							"http://example@ondemand.saucelabs.com:80/wd/hub"),
 					caps);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -232,7 +232,7 @@ public class SharedDriver extends EventFiringWebDriver {
 		try {
 			rd = new RemoteWebDriver(
 					new URL(
-							"http://citizenchris:a8f0eeb8-bb02-4788-b6d1-3680f480930c@ondemand.saucelabs.com:80/wd/hub"),
+							"http://example@ondemand.saucelabs.com:80/wd/hub"),
 					caps);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
