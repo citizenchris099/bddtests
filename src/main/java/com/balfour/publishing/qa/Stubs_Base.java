@@ -56,12 +56,10 @@ public class Stubs_Base {
 		tp0.setSbPUDyUrl(new Test_Enviornment().envUrl(slugNAction.getProject_view_dynamic()));
 		tp0.setSbOCOurl(new Test_Enviornment().envUrl(slugNAction.getOco()));
 		tp0.setAdvUname("trevorbelmont001");
-		tp0.setAdvPword("Welles113*");
+		tp0.setAdvPword("apass002");
 		tp0.setMiscUname001("veggietester003");
-		tp0.setMiscPword001("cOOKE1964");
+		tp0.setMiscPword001("apass001");
 		tp0.setMiscUname002("veggietester006@gmail.com");
-		tp0.setAdminUName("veggieadministrator");
-		tp0.setAdminPword("cOOKE1964");
 		return tp0;
 	}
 
