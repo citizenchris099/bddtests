@@ -15,14 +15,14 @@ Feature: Studio Balfour User Admin Screen
     Then user can register to SB
     And user can log into SB
 
-  @ua @regression 
+  @ua @regression
   Scenario: User Admin Grid Search
     Given registered user
     And logged into SB as >adviser
     When on User Admin Grid
     Then user is found User Admin Grid
 
-  @ua @regression @test
+  @ua @regression
   Scenario: User Admin Grid Edit First Name persist on grid
     Given registered user
     And logged into SB as >adviser
@@ -30,7 +30,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user first name direclty on grid
     Then edits to user should persist on UA grid
 
-  @ua @regression @test
+  @ua @regression 
   Scenario: User Admin Grid Edit Last Name persist on grid
     Given registered user
     And logged into SB as >adviser
@@ -38,7 +38,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user last name direclty on grid
     Then edits to user should persist on UA grid
 
-  @ua @regression @test
+  @ua @regression 
   Scenario: User Admin Grid Edit Role persist on grid
     Given registered user
     And logged into SB as >adviser
@@ -46,7 +46,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user role direclty on grid
     Then edits to user should persist on UA grid
 
-  @ua @regression @test
+  @ua @regression
   Scenario: User Admin Grid Edit fname persist on edit user screen
     Given registered user
     And logged into SB as >adviser
@@ -54,7 +54,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user first name direclty on grid
     Then edits to user should persist on edit user screen
 
-  @ua @regression @test
+  @ua @regression 
   Scenario: User Admin Grid Edit lname persist on edit user screen
     Given registered user
     And logged into SB as >adviser
@@ -62,7 +62,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user last name direclty on grid
     Then edits to user should persist on edit user screen
 
-  @ua @regression @test
+  @ua @regression 
   Scenario: User Admin Grid Edit role persist on edit user screen
     Given registered user
     And logged into SB as >adviser
@@ -94,7 +94,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user role direclty on grid
     Then edits to user should persist on PU grid
 
-  @ua @regression
+  @ua @regression 
   Scenario: User Admin Grid Edit fname persist on user profile
     Given registered user
     And logged into SB as >adviser
@@ -195,7 +195,7 @@ Feature: Studio Balfour User Admin Screen
     When user change project
     Then default proj and role is reflected correctly on the User Admin Grid
 
-  @ua @regression
+  @ua @regression 
   Scenario: disabled user cannot log in
     Given registered user
     And logged into SB as >adviser
@@ -203,7 +203,7 @@ Feature: Studio Balfour User Admin Screen
     And disable user
     Then user cannot log into SB
 
-  @ua @regression
+  @ua @regression 
   Scenario: disabled user displays on PU gird
     Given registered user
     And logged into SB as >adviser
@@ -211,7 +211,7 @@ Feature: Studio Balfour User Admin Screen
     And disable user
     Then edits to user should persist on PU grid
 
-  @ua @regression
+  @ua @regression 
   Scenario: user re-enabled can log in
     Given disabled user can't log in
     When user re-enabled
@@ -235,7 +235,7 @@ Feature: Studio Balfour User Admin Screen
     When edit user email direclty on grid
     Then edits to user should persist on UA grid
 
-  @ua @regression
+  @ua @regression 
   Scenario: edit user register role persist on UA
     Given user register
     When edit user role direclty on grid
@@ -259,7 +259,7 @@ Feature: Studio Balfour User Admin Screen
     When edit user email direclty on grid
     Then edits to user should persist on PU grid
 
-  @ua @regression
+  @ua @regression 
   Scenario: edit user register role persist on PU
     Given user register
     When edit user role direclty on grid

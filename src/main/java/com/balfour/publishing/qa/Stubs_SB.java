@@ -12,6 +12,7 @@ import com.balfour.publishing.qa.pages.sb4.Sb4LoginPage;
 import com.balfour.publishing.qa.pages.sb4.Sb4NewUserRegProf;
 import com.balfour.publishing.qa.pages.sb4.Sb4OCOListPage;
 import com.balfour.publishing.qa.pages.sb4.Sb4ProfilePage;
+import com.balfour.publishing.qa.pages.sb4.Sb4ProjNRolePage;
 import com.balfour.publishing.qa.pages.sb4.Sb4ProjectUserPage;
 import com.balfour.publishing.qa.pages.sb4.Sb4UserAdminPage;
 
@@ -47,6 +48,8 @@ public class Stubs_SB {
 	String key = null;
 	String[] fakeRoles = { "editor", "designer", "photographer" };
 	String[] projects = { "Y50061", "X50061", "450061", "S50061", "B50061", "M50061" };
+	int userisreg = 0;
+	int advisreg = 0;
 
 	public Stubs_SB(SharedDriver driver) throws InterruptedException {
 		this.driver = driver;
@@ -76,7 +79,7 @@ public class Stubs_SB {
 		registered_user();
 		sb.loginAs("customer support", tp0);
 		driver.get(tp0.getSbPUUrl());
-		new Sb4ProjectUserPage(driver).editUser(ur0).goToProjNRole().addProject("Y50062").addProject("611424").LogOut();
+		new Sb4ProjectUserPage(driver).editUser(ur0).goToProjNRole().addProject("Y50062").addProject("550074").LogOut();
 	}
 
 	@Given("^roles on projects vary$")
@@ -90,16 +93,16 @@ public class Stubs_SB {
 	@When("^user change project$")
 	public void user_change_project() throws Throwable {
 		sb.loginAs(ur0, tp0);
-		new Sb4HomePage(driver).ChangeProject("611424").LogOut();
-		ur0.setProject("611424");
+		new Sb4HomePage(driver).ChangeProject("Y50061").LogOut();
+		ur0.setProject("Y50061");
 	}
 
 	@Given("^registered adviser$")
 	public void registered_adviser() throws Throwable {
 		ur0 = sb.regUserInfo("adviser");
 		sb.registerUserAdmin(ur0, tp0);
-		ur3 = sb.verifyTestUser(ur0, tp0);
-		sb.userInfoCompare(ur3, ur0);
+		// ur3 = sb.verifyTestUser(ur0, tp0);
+		// sb.userInfoCompare(ur3, ur0);
 	}
 
 	@Given("^logged into SB as >adviser$")
@@ -119,13 +122,23 @@ public class Stubs_SB {
 
 	@Then("^user is found User Admin Grid$")
 	public void user_is_found_User_Admin_Grid() throws Throwable {
-		new Sb4UserAdminPage(driver).userFound(ur0);
+		try {
+			new Sb4UserAdminPage(driver).userFound(ur0).LogOut();
+		} catch (RuntimeException r) {
+			new Sb4UserAdminPage(driver).LogOut();
+			throw r;
+		}
 	}
 
 	@When("^edit user first name direclty on grid$")
 	public void edit_user_first_name_direclty_on_grid() throws Throwable {
 		ur1 = sb.editUserInfo("fname", ur0);
-		new Sb4UserAdminPage(driver).userFound(ur0).fNameEdit(ur1).LogOut();
+		try {
+			new Sb4UserAdminPage(driver).userFound(ur0).fNameEdit(ur1).LogOut();
+		} catch (RuntimeException r) {
+			new Sb4UserAdminPage(driver).LogOut();
+			throw r;
+		}
 	}
 
 	@When("^edit user first name direclty on PU grid$")
@@ -133,7 +146,12 @@ public class Stubs_SB {
 		ur1 = sb.editUserInfo("fname", ur0);
 		ur1.setEmailSearch(false);
 		ur0.setEmailSearch(false);
-		new Sb4ProjectUserPage(driver).userFound(ur0).fNameEdit(ur1).LogOut();
+		try {
+			new Sb4ProjectUserPage(driver).userFound(ur0).fNameEdit(ur1).LogOut();
+		} catch (RuntimeException r) {
+			new Sb4ProjectUserPage(driver).LogOut();
+			throw r;
+		}
 	}
 
 	@When("^edit user info$")
@@ -143,13 +161,23 @@ public class Stubs_SB {
 		ur1.setuName(ur0.getuName());
 		ur1.setPword(ur0.getPword());
 		ur1.setMsg("The profile information has been updated");
-		new Sb4UserAdminPage(driver).editUser(ur0).successfullUpdate(ur1).LogOut();
+		try {
+			new Sb4UserAdminPage(driver).editUser(ur0).successfullUpdate(ur1).LogOut();
+		} catch (RuntimeException r) {
+			new Sb4UserAdminPage(driver).LogOut();
+			throw r;
+		}
 	}
 
 	@When("^edit user last name direclty on grid$")
 	public void edit_user_last_name_direclty_on_grid() throws Throwable {
 		ur1 = sb.editUserInfo("lname", ur0);
-		new Sb4UserAdminPage(driver).userFound(ur0).lNameEdit(ur1).LogOut();
+		try {
+			new Sb4UserAdminPage(driver).userFound(ur0).lNameEdit(ur1).LogOut();
+		} catch (RuntimeException r) {
+			new Sb4UserAdminPage(driver).LogOut();
+			throw r;
+		}
 	}
 
 	@When("^edit user last name direclty on PU grid$")
@@ -157,19 +185,35 @@ public class Stubs_SB {
 		ur1 = sb.editUserInfo("lname", ur0);
 		ur1.setEmailSearch(false);
 		ur0.setEmailSearch(false);
-		new Sb4ProjectUserPage(driver).userFound(ur0).lNameEdit(ur1).LogOut();
+		try {
+			new Sb4ProjectUserPage(driver).userFound(ur0).lNameEdit(ur1).LogOut();
+		} catch (RuntimeException r) {
+			new Sb4ProjectUserPage(driver).LogOut();
+			throw r;
+		}
+
 	}
 
 	@When("^edit user email direclty on grid$")
 	public void edit_user_email_direclty_on_grid() throws Throwable {
 		ur1 = sb.editUserInfo("email", ur0);
-		new Sb4UserAdminPage(driver).userFound(ur0).emailEdit(ur1).LogOut();
+		try {
+			new Sb4UserAdminPage(driver).userFound(ur0).emailEdit(ur1).LogOut();
+		} catch (RuntimeException r) {
+			new Sb4UserAdminPage(driver).LogOut();
+			throw r;
+		}
 	}
 
 	@When("^edit user role direclty on grid$")
 	public void edit_user_role_direclty_on_grid() throws Throwable {
 		ur1 = sb.editUserInfo("role", ur0);
-		new Sb4UserAdminPage(driver).userFound(ur0).roleEdit(ur1).LogOut();
+		try {
+			new Sb4UserAdminPage(driver).userFound(ur0).roleEdit(ur1).LogOut();
+		} catch (RuntimeException r) {
+			new Sb4UserAdminPage(driver).LogOut();
+			throw r;
+		}
 	}
 
 	@When("^edit user role direclty on PU grid$")
@@ -177,21 +221,37 @@ public class Stubs_SB {
 		ur1 = sb.editUserInfo("role", ur0);
 		ur1.setEmailSearch(false);
 		ur0.setEmailSearch(false);
-		new Sb4ProjectUserPage(driver).userFound(ur0).roleEdit(ur1).LogOut();
+		try {
+			new Sb4ProjectUserPage(driver).userFound(ur0).roleEdit(ur1).LogOut();
+		} catch (RuntimeException r) {
+			new Sb4ProjectUserPage(driver).LogOut();
+			throw r;
+		}
 	}
 
 	@Then("^edits to user should persist on UA grid$")
 	public void edits_to_user_should_persist_on_UA_grid() throws Throwable {
 		sb.loginAs("customer support", tp0);
+		new Sb4HomePage(driver).ChangeProject2("Y50061");
 		driver.get(tp0.getSbUAUrl());
-		new Sb4UserAdminPage(driver).userFound(ur1).LogOut();
+		try {
+			new Sb4UserAdminPage(driver).userFound(ur1).LogOut();
+		} catch (RuntimeException r) {
+			new Sb4UserAdminPage(driver).LogOut();
+			throw r;
+		}
 	}
 
 	@Then("^edits to user should persist on PU grid$")
 	public void edits_to_user_should_persist_on_PU_grid() throws Throwable {
 		sb.loginAs("customer support", tp0);
 		driver.get(tp0.getSbPUUrl());
-		new Sb4ProjectUserPage(driver).userFound(ur1).LogOut();
+		try {
+			new Sb4ProjectUserPage(driver).userFound(ur1).LogOut();
+		} catch (RuntimeException r) {
+			new Sb4ProjectUserPage(driver).LogOut();
+			throw r;
+		}
 	}
 
 	@Then("^edits to user should persist on edit user screen$")
@@ -199,6 +259,7 @@ public class Stubs_SB {
 		sb.loginAs("customer support", tp0);
 		driver.get(tp0.getSbUAUrl());
 		ur2 = new Sb4UserAdminPage(driver).editUser(ur1).checkEditUser();
+		new Sb4EditUserPage(driver).LogOut();
 		sb.userInfoCompare(ur1, ur2);
 	}
 
@@ -212,15 +273,25 @@ public class Stubs_SB {
 	public void edits_to_user_role_should_persist_on_Project_and_Role_page() throws Throwable {
 		sb.loginAs("customer support", tp0);
 		driver.get(tp0.getSbPUUrl());
-		new Sb4ProjectUserPage(driver).editUser(ur1).goToProjNRole().projRoleCheck(y50061Href, ur1).LogOut();
+		try {
+			new Sb4ProjectUserPage(driver).editUser(ur1).goToProjNRole().projRoleCheck(y50061Href, ur1).LogOut();
+		} catch (RuntimeException r) {
+			new Sb4ProjNRolePage(driver).LogOut();
+			throw r;
+		}
 	}
 
 	@Then("^edits to user role should persist on all projects on Project and Role page$")
 	public void edits_to_user_role_should_persist_on_all_projects_on_Project_and_Role_page() throws Throwable {
 		sb.loginAs("customer support", tp0);
 		driver.get(tp0.getSbPUUrl());
-		new Sb4ProjectUserPage(driver).editUser(ur1).goToProjNRole().projRoleCheck(y50061Href, ur1)
-				.projRoleCheck(p611424Href, ur1).projRoleCheck(y50062Href, ur1).LogOut();
+		try {
+			new Sb4ProjectUserPage(driver).editUser(ur1).goToProjNRole().projRoleCheck(y50061Href, ur1)
+					.projRoleCheck(p611424Href, ur1).projRoleCheck(y50062Href, ur1).LogOut();
+		} catch (RuntimeException r) {
+			new Sb4ProjNRolePage(driver).LogOut();
+			throw r;
+		}
 	}
 
 	@When("^add new project to adviser$")
@@ -271,7 +342,7 @@ public class Stubs_SB {
 	@Then("^default proj and role is reflected correctly on the PU Grid$")
 	public void default_proj_and_role_is_reflected_correctly_on_the_PU_Grid() throws Throwable {
 		sb.loginAs("customer support", tp0);
-		new Sb4HomePage(driver).ChangeProject2("611424").goToProjInfo().goToProjUsers().userFound(ur0).LogOut();
+		new Sb4HomePage(driver).ChangeProject2("Y50061").goToProjInfo().goToProjUsers().userFound(ur0).LogOut();
 	}
 
 	@Then("^user cannot log into SB$")
@@ -304,7 +375,7 @@ public class Stubs_SB {
 
 	@When("^user re-enabled$")
 	public void user_re_enabled() throws Throwable {
-		logged_into_SB_as_adviser();
+		sb.loginAs("customer support", tp0);
 		on_User_Admin_Grid();
 		new Sb4UserAdminPage(driver).userFound(ur1).roleEdit(ur0).LogOut();
 	}
@@ -432,7 +503,12 @@ public class Stubs_SB {
 
 	@Then("^user is found on PU Grid$")
 	public void user_is_found_on_PU_Grid() throws Throwable {
-		new Sb4ProjectUserPage(driver).userFound(ur0);
+		try {
+			new Sb4ProjectUserPage(driver).userFound(ur0).LogOut();
+		} catch (RuntimeException r) {
+			new Sb4ProjectUserPage(driver).LogOut();
+			throw r;
+		}
 	}
 
 	@When("^disable user from PU$")
@@ -475,6 +551,7 @@ public class Stubs_SB {
 		logged_into_SB_as_an_adviser();
 		on_PU_Grid();
 		ur2 = new Sb4ProjectUserPage(driver).editUser(ur1).checkEditUser();
+		new Sb4EditUserPage(driver).LogOut();
 		ur2.setEmail("");
 		sb.userInfoCompare(ur1, ur2);
 	}
@@ -523,11 +600,14 @@ public class Stubs_SB {
 
 	@Then("^adviser appears on PU grid of all projects$")
 	public void adviser_appears_on_PU_grid_of_all_projects() throws Throwable {
-
-		for (String st : projects) {
-			new Sb4HomePage(driver).ChangeProject2(st).goToProjInfo().goToProjUsers().userFound(ur0).GoHome();
+		try {
+			for (String st : projects) {
+				new Sb4HomePage(driver).ChangeProject2(st).goToProjInfo().goToProjUsers().userFound(ur0).GoHome();
+			}
+			new Sb4HomePage(driver).LogOut();
+		} catch (RuntimeException r) {
+			new Sb4ProjectUserPage(driver).LogOut();
 		}
-		new Sb4HomePage(driver).LogOut();
 	}
 
 	/**

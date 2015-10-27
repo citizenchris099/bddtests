@@ -37,7 +37,7 @@ public class Stubs_Base {
 
 	@Before
 	public void testSetup() {
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 		driver.manage().timeouts().setScriptTimeout(60, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
@@ -58,10 +58,8 @@ public class Stubs_Base {
 		tp0.setAdvUname("trevorbelmont001");
 		tp0.setAdvPword("Welles113*");
 		tp0.setMiscUname001("veggietester003");
-		tp0.setMiscPword001("cOOKE1964");
+		tp0.setMiscPword001("Welles113*");
 		tp0.setMiscUname002("veggietester006@gmail.com");
-		tp0.setAdminUName("veggieadministrator");
-		tp0.setAdminPword("cOOKE1964");
 		return tp0;
 	}
 
@@ -76,8 +74,13 @@ public class Stubs_Base {
 		UserRegPOJO obj = new UserRegPOJO();
 		obj.setfName(pg.randomFName());
 		obj.setlName(pg.randomLName());
+		obj.setStatement("SELECT user_register_key FROM b4pub.user_register where user_register_email = ?");
+		obj.setDb_url("jdbc:mysql://pub-constellation-qa-db-01.ckdfohchwkze.us-east-1.rds.amazonaws.com:3306/b4pub");
+		obj.setDb_username("vpc_dbuser");
+		obj.setDb_pword("prat0ri0n");
+		obj.setDb_reg_key("user_register_key");
 		obj.setEmail(pg.emailGen002());
-		obj.setProject("550074");
+		obj.setProject("Y50061");
 		obj.setPhone(pg.randomPhone());
 		obj.setfBook(pg.randomUName());
 		obj.setGoogle(pg.randomUName());
@@ -152,7 +155,7 @@ public class Stubs_Base {
 			throw new RuntimeException("User Info did not match");
 		}
 	}
-	
+
 	protected void ocoInfoCompare(OCOPOJO obj, OCOPOJO obj1) {
 		if (obj.hashCode() != obj1.hashCode()) {
 			throw new RuntimeException("OCO Info did not match");

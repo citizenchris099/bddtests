@@ -7,7 +7,7 @@ Feature: Studio Balfour User Admin Screen
     And create PU user register
     Then user can register to SB
 
-  @pu @regression @user
+  @pu @regression @user 
   Scenario: PU Register User can log in
     Given logged into SB as an adviser
     When on PU Grid
@@ -22,7 +22,7 @@ Feature: Studio Balfour User Admin Screen
     When on PU Grid
     Then user is found on PU Grid
 
-  @pu @regression
+  @pu @regression 
   Scenario: PU Grid Edit First Name persist on grid
     Given registered PU user
     And logged into SB as an adviser
@@ -30,7 +30,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user first name direclty on PU grid
     Then edits to user should persist on PU grid
 
-  @pu @regression
+  @pu @regression 
   Scenario: PU Grid Edit Last Name persist on grid
     Given registered PU user
     And logged into SB as an adviser
@@ -38,7 +38,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user last name direclty on PU grid
     Then edits to user should persist on PU grid
 
-  @pu @regression
+  @pu @regression 
   Scenario: PU Grid Edit Role persist on grid
     Given registered PU user
     And logged into SB as an adviser
@@ -46,7 +46,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user role direclty on PU grid
     Then edits to user should persist on PU grid
 
-  @pu @regression
+  @pu @regression 
   Scenario: PU Grid Edit fname persist on PU edit user screen
     Given registered PU user
     And logged into SB as an adviser
@@ -54,7 +54,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user first name direclty on PU grid
     Then edits to user should persist on PU edit user screen
 
-  @pu @regression
+  @pu @regression 
   Scenario: PU Grid Edit lname persist on PU edit user screen
     Given registered PU user
     And logged into SB as an adviser
@@ -62,7 +62,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user last name direclty on PU grid
     Then edits to user should persist on PU edit user screen
 
-  @pu @regression
+  @pu @regression 
   Scenario: PU Grid Edit role persist on PU edit user screen
     Given registered PU user
     And logged into SB as an adviser
@@ -70,7 +70,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user role direclty on PU grid
     Then edits to user should persist on PU edit user screen
 
-  @pu @regression @ua
+  @pu @regression @ua 
   Scenario: PU Grid Edit fname persist on UA grid
     Given registered PU user
     And logged into SB as an adviser
@@ -78,7 +78,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user first name direclty on PU grid
     Then edits to user should persist on UA grid
 
-  @pu @regression @ua
+  @pu @regression @ua 
   Scenario: PU Grid Edit lname persist on UA grid
     Given registered PU user
     And logged into SB as an adviser
@@ -86,7 +86,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user last name direclty on PU grid
     Then edits to user should persist on UA grid
 
-  @pu @regression
+  @pu @regression 
   Scenario: PU Grid Edit fname persist on user profile
     Given registered PU user
     And logged into SB as an adviser
@@ -94,7 +94,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user first name direclty on PU grid
     Then edits to user should persist on user profile
 
-  @pu @regression
+  @pu @regression 
   Scenario: User Admin Grid Edit lname persist on user profile
     Given registered PU user
     And logged into SB as an adviser
@@ -102,7 +102,7 @@ Feature: Studio Balfour User Admin Screen
     And edit user last name direclty on PU grid
     Then edits to user should persist on user profile
 
-  @pu @regression
+  @pu @regression 
   Scenario: PU Grid Edit role persist on user profile
     Given registered PU user
     And logged into SB as an adviser
@@ -173,61 +173,61 @@ Feature: Studio Balfour User Admin Screen
     And disable user from PU
     Then edits to user should persist on PU grid
 
-  @pu @regression @fail
+  @pu @regression 
   Scenario: PU user re-enabled can log in
     Given PU disabled user can't log in
-    When user re-enabled
+    When user re-enabled from PU
     Then user can log into SB
 
-  @pu @regression
+  @pu @regression 
   Scenario: edit PU user register first name persist on PU
     Given PU user register
     When edit user first name direclty on PU grid
     Then edits to user should persist on PU grid
 
-  @pu @regression
+  @pu @regression 
   Scenario: edit PU user register last name persist on PU
     Given PU user register
     When edit user last name direclty on PU grid
     Then edits to user should persist on PU grid
 
-  @pu @regression
+  @pu @regression 
   Scenario: edit user register email persist on PU
     Given PU user register
     When edit user email direclty on PU grid
     Then edits to user should persist on PU grid
 
-  @pu @regression
+  @pu @regression 
   Scenario: PU edit user register role persist on PU
     Given PU user register
     When edit user role direclty on PU grid
     Then edits to user should persist on PU grid
 
-  @pu @regression @ua
+  @pu @regression @ua 
   Scenario: edit user register first name persist on UA
     Given PU user register
     When edit user first name direclty on PU grid
     Then edits to user should persist on UA grid
 
-  @pu @regression @ua
+  @pu @regression @ua 
   Scenario: edit user register last name persist on UA
     Given PU user register
     When edit user last name direclty on PU grid
     Then edits to user should persist on UA grid
 
-  @ua @pu @regression @ua
+  @ua @pu @regression 
   Scenario: edit user register email persist on UA
     Given PU user register
     When edit user email direclty on PU grid
     Then edits to user should persist on UA grid
 
-  @ua @pu @regression @ua
+  @ua @pu @regression @ua 
   Scenario: edit user register role persist on UA
     Given PU user register
     When edit user role direclty on PU grid
     Then edits to user should persist on UA grid
 
-  @pu @regression @test
+  @pu @regression 
   Scenario: adviser appears on PU grid for all projects
     Given registered adviser
     When logged into SB as Customer Support
