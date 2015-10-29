@@ -1,500 +1,188 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("fakeUser.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("ProjUser.feature");
 formatter.feature({
   "line": 1,
-  "name": "Log out of Studio Balfour v3",
+  "name": "Studio Balfour User Admin Screen",
   "description": "",
-  "id": "log-out-of-studio-balfour-v3",
+  "id": "studio-balfour-user-admin-screen",
   "keyword": "Feature"
 });
 formatter.before({
-  "duration": 9539507006,
+  "duration": 10038765154,
   "status": "passed"
 });
 formatter.before({
-  "duration": 934875129,
+  "duration": 79226084,
   "status": "passed"
 });
 formatter.scenario({
-  "line": 180,
-  "name": "Edit fake user info from PU edit fake user screen persist on profile",
+  "line": 4,
+  "name": "PU Register User completes profile",
   "description": "",
-  "id": "log-out-of-studio-balfour-v3;edit-fake-user-info-from-pu-edit-fake-user-screen-persist-on-profile",
+  "id": "studio-balfour-user-admin-screen;pu-register-user-completes-profile",
   "type": "scenario",
   "keyword": "Scenario",
   "tags": [
     {
-      "line": 179,
-      "name": "@regression"
-    },
-    {
-      "line": 179,
-      "name": "@fu"
-    },
-    {
-      "line": 179,
+      "line": 3,
       "name": "@pu"
     },
     {
-      "line": 179,
+      "line": 3,
+      "name": "@regression"
+    },
+    {
+      "line": 3,
       "name": "@test"
     }
   ]
 });
 formatter.step({
-  "line": 181,
-  "name": "fake user created",
+  "line": 5,
+  "name": "logged into SB as an adviser",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 182,
-  "name": "logged into SB as an adviser",
-  "keyword": "And "
-});
-formatter.step({
-  "line": 183,
+  "line": 6,
   "name": "on PU Grid",
   "keyword": "When "
 });
 formatter.step({
-  "line": 184,
-  "name": "edit user info on PU edit fake user screen",
+  "line": 7,
+  "name": "create PU user register",
   "keyword": "And "
 });
 formatter.step({
-  "line": 185,
-  "name": "edits to user should persist on user profile",
+  "line": 8,
+  "name": "user can register to SB",
   "keyword": "Then "
-});
-formatter.match({
-  "location": "Stubs_SB.fake_user_created()"
-});
-formatter.result({
-  "duration": 125366493734,
-  "status": "passed"
 });
 formatter.match({
   "location": "Stubs_SB.logged_into_SB_as_an_adviser()"
 });
 formatter.result({
-  "duration": 31443278897,
+  "duration": 31753132724,
   "status": "passed"
 });
 formatter.match({
   "location": "Stubs_SB.on_PU_Grid()"
 });
 formatter.result({
-  "duration": 3341769039,
+  "duration": 2931808870,
   "status": "passed"
 });
 formatter.match({
-  "location": "Stubs_SB.edit_user_info_on_PU_edit_fake_user_screen()"
+  "location": "Stubs_SB.create_PU_user_register()"
 });
 formatter.result({
-  "duration": 23727612124,
+  "duration": 20075637304,
   "status": "passed"
 });
 formatter.match({
-  "location": "Stubs_SB.edits_to_user_should_persist_on_user_profile()"
+  "location": "Stubs_SB.user_can_register_to_SB()"
 });
 formatter.result({
-  "duration": 44515692238,
+  "duration": 13922250233,
   "status": "passed"
 });
 formatter.after({
-  "duration": 41565,
+  "duration": 26718,
   "status": "passed"
 });
 formatter.embedding("image/png", "embedded0.png");
 formatter.after({
-  "duration": 466253096,
+  "duration": 440647579,
   "status": "passed"
 });
 formatter.before({
-  "duration": 1937410346,
+  "duration": 1920110955,
   "status": "passed"
 });
 formatter.before({
-  "duration": 91947202,
+  "duration": 96620740,
   "status": "passed"
 });
 formatter.scenario({
-  "line": 188,
-  "name": "Edit fake user info from PU edit fake user screen persist UA grid",
+  "line": 11,
+  "name": "PU Register User can log in",
   "description": "",
-  "id": "log-out-of-studio-balfour-v3;edit-fake-user-info-from-pu-edit-fake-user-screen-persist-ua-grid",
+  "id": "studio-balfour-user-admin-screen;pu-register-user-can-log-in",
   "type": "scenario",
   "keyword": "Scenario",
   "tags": [
     {
-      "line": 187,
+      "line": 10,
+      "name": "@pu"
+    },
+    {
+      "line": 10,
       "name": "@regression"
     },
     {
-      "line": 187,
-      "name": "@fu"
+      "line": 10,
+      "name": "@user"
     },
     {
-      "line": 187,
-      "name": "@ua"
-    },
-    {
-      "line": 187,
+      "line": 10,
       "name": "@test"
     }
   ]
 });
 formatter.step({
-  "line": 189,
-  "name": "fake user created",
+  "line": 12,
+  "name": "logged into SB as an adviser",
   "keyword": "Given "
 });
 formatter.step({
-  "line": 190,
-  "name": "logged into SB as an adviser",
-  "keyword": "And "
-});
-formatter.step({
-  "line": 191,
+  "line": 13,
   "name": "on PU Grid",
   "keyword": "When "
 });
 formatter.step({
-  "line": 192,
-  "name": "edit user info on PU edit fake user screen",
+  "line": 14,
+  "name": "create PU user register",
   "keyword": "And "
 });
 formatter.step({
-  "line": 193,
-  "name": "edits to fake user should persist on UA grid",
+  "line": 15,
+  "name": "user can register to SB",
   "keyword": "Then "
 });
-formatter.match({
-  "location": "Stubs_SB.fake_user_created()"
-});
-formatter.result({
-  "duration": 119600840328,
-  "status": "passed"
-});
-formatter.match({
-  "location": "Stubs_SB.logged_into_SB_as_an_adviser()"
-});
-formatter.result({
-  "duration": 31683077494,
-  "status": "passed"
-});
-formatter.match({
-  "location": "Stubs_SB.on_PU_Grid()"
-});
-formatter.result({
-  "duration": 3198147039,
-  "status": "passed"
-});
-formatter.match({
-  "location": "Stubs_SB.edit_user_info_on_PU_edit_fake_user_screen()"
-});
-formatter.result({
-  "duration": 25549498644,
-  "status": "passed"
-});
-formatter.match({
-  "location": "Stubs_SB.edits_to_fake_user_should_persist_on_UA_grid()"
-});
-formatter.result({
-  "duration": 94619022836,
-  "status": "passed"
-});
-formatter.after({
-  "duration": 24693,
-  "status": "passed"
-});
-formatter.embedding("image/png", "embedded1.png");
-formatter.after({
-  "duration": 550820707,
-  "status": "passed"
-});
-formatter.before({
-  "duration": 2980569425,
-  "status": "passed"
-});
-formatter.before({
-  "duration": 156228022,
-  "status": "passed"
-});
-formatter.scenario({
-  "line": 204,
-  "name": "user disabled from UA cannot log in",
-  "description": "",
-  "id": "log-out-of-studio-balfour-v3;user-disabled-from-ua-cannot-log-in",
-  "type": "scenario",
-  "keyword": "Scenario",
-  "tags": [
-    {
-      "line": 203,
-      "name": "@ua"
-    },
-    {
-      "line": 203,
-      "name": "@regression"
-    },
-    {
-      "line": 203,
-      "name": "@fu"
-    },
-    {
-      "line": 203,
-      "name": "@test"
-    }
-  ]
-});
 formatter.step({
-  "line": 205,
-  "name": "fake user created",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 206,
-  "name": "logged into SB as \u003eadviser",
-  "keyword": "And "
-});
-formatter.step({
-  "line": 207,
-  "name": "on User Admin Grid",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 208,
-  "name": "disable user",
-  "keyword": "And "
-});
-formatter.step({
-  "line": 209,
-  "name": "user cannot log into SB",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "Stubs_SB.fake_user_created()"
-});
-formatter.result({
-  "duration": 118802254028,
-  "status": "passed"
-});
-formatter.match({
-  "location": "Stubs_SB.logged_into_SB_as_adviser()"
-});
-formatter.result({
-  "duration": 33677514529,
-  "status": "passed"
-});
-formatter.match({
-  "location": "Stubs_SB.on_User_Admin_Grid()"
-});
-formatter.result({
-  "duration": 14079644628,
-  "status": "passed"
-});
-formatter.match({
-  "location": "Stubs_SB.disable_user()"
-});
-formatter.result({
-  "duration": 12578959241,
-  "status": "passed"
-});
-formatter.match({
-  "location": "Stubs_SB.user_cannot_log_into_SB()"
-});
-formatter.result({
-  "duration": 8045698037,
-  "status": "passed"
-});
-formatter.after({
-  "duration": 39662,
-  "status": "passed"
-});
-formatter.embedding("image/png", "embedded2.png");
-formatter.after({
-  "duration": 419544780,
-  "status": "passed"
-});
-formatter.before({
-  "duration": 1960709153,
-  "status": "passed"
-});
-formatter.before({
-  "duration": 157473771,
-  "status": "passed"
-});
-formatter.scenario({
-  "line": 212,
-  "name": "user disabled from PU cannot log in",
-  "description": "",
-  "id": "log-out-of-studio-balfour-v3;user-disabled-from-pu-cannot-log-in",
-  "type": "scenario",
-  "keyword": "Scenario",
-  "tags": [
-    {
-      "line": 211,
-      "name": "@regression"
-    },
-    {
-      "line": 211,
-      "name": "@fu"
-    },
-    {
-      "line": 211,
-      "name": "@pu"
-    },
-    {
-      "line": 211,
-      "name": "@test"
-    }
-  ]
-});
-formatter.step({
-  "line": 213,
-  "name": "fake user created",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 214,
-  "name": "logged into SB as an adviser",
-  "keyword": "And "
-});
-formatter.step({
-  "line": 215,
-  "name": "on PU Grid",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 216,
-  "name": "disable user from PU",
-  "keyword": "And "
-});
-formatter.step({
-  "line": 217,
-  "name": "user cannot log into SB",
-  "keyword": "Then "
-});
-formatter.match({
-  "location": "Stubs_SB.fake_user_created()"
-});
-formatter.result({
-  "duration": 124197137419,
-  "status": "passed"
-});
-formatter.match({
-  "location": "Stubs_SB.logged_into_SB_as_an_adviser()"
-});
-formatter.result({
-  "duration": 31119032704,
-  "status": "passed"
-});
-formatter.match({
-  "location": "Stubs_SB.on_PU_Grid()"
-});
-formatter.result({
-  "duration": 3088727416,
-  "status": "passed"
-});
-formatter.match({
-  "location": "Stubs_SB.disable_user_from_PU()"
-});
-formatter.result({
-  "duration": 16875578452,
-  "status": "passed"
-});
-formatter.match({
-  "location": "Stubs_SB.user_cannot_log_into_SB()"
-});
-formatter.result({
-  "duration": 8084880795,
-  "status": "passed"
-});
-formatter.after({
-  "duration": 19207,
-  "status": "passed"
-});
-formatter.embedding("image/png", "embedded3.png");
-formatter.after({
-  "duration": 464667929,
-  "status": "passed"
-});
-formatter.before({
-  "duration": 2372043276,
-  "status": "passed"
-});
-formatter.before({
-  "duration": 112953131,
-  "status": "passed"
-});
-formatter.scenario({
-  "line": 220,
-  "name": "fake user re-enabled from PU can log in",
-  "description": "",
-  "id": "log-out-of-studio-balfour-v3;fake-user-re-enabled-from-pu-can-log-in",
-  "type": "scenario",
-  "keyword": "Scenario",
-  "tags": [
-    {
-      "line": 219,
-      "name": "@pu"
-    },
-    {
-      "line": 219,
-      "name": "@regression"
-    },
-    {
-      "line": 219,
-      "name": "@fu"
-    },
-    {
-      "line": 219,
-      "name": "@test"
-    }
-  ]
-});
-formatter.step({
-  "line": 221,
-  "name": "PU disabled fake user can\u0027t log in",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 222,
-  "name": "user re-enabled from PU",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 223,
+  "line": 16,
   "name": "user can log into SB",
-  "keyword": "Then "
+  "keyword": "And "
 });
 formatter.match({
-  "location": "Stubs_SB.PU_disabled_fake_user_can_t_log_in()"
+  "location": "Stubs_SB.logged_into_SB_as_an_adviser()"
 });
 formatter.result({
-  "duration": 185662091116,
+  "duration": 30678111517,
   "status": "passed"
 });
 formatter.match({
-  "location": "Stubs_SB.user_re_enabled_from_PU()"
+  "location": "Stubs_SB.on_PU_Grid()"
 });
 formatter.result({
-  "duration": 51053041045,
+  "duration": 2661509193,
+  "status": "passed"
+});
+formatter.match({
+  "location": "Stubs_SB.create_PU_user_register()"
+});
+formatter.result({
+  "duration": 18094933997,
+  "status": "passed"
+});
+formatter.match({
+  "location": "Stubs_SB.user_can_register_to_SB()"
+});
+formatter.result({
+  "duration": 12494275309,
   "status": "passed"
 });
 formatter.match({
   "location": "Stubs_SB.user_can_log_into_SB()"
 });
 formatter.result({
-  "duration": 42834850853,
-  "status": "passed"
-});
-formatter.after({
-  "duration": 16291,
-  "status": "passed"
-});
-formatter.embedding("image/png", "embedded4.png");
-formatter.after({
-  "duration": 500862633,
-  "status": "passed"
-});
-});
+  "duration": 48842679256,
+  "error_message": "org.openqa.selenium.TimeoutException: Timed out after 15 seconds waiting for presence of element located by: By.xpath: //a[.\u003d\u0027Book Status\u0027]\nBuild info: version: \u00272.45.0\u0027, revision: \u00275017cb8e7ca8e37638dc3091b2440b90a1d8686f\u0027, time: \u00272015-02-27 09:10:26\u0027\nSystem info: host: \u0027d-cmanning-mbp.local\u0027, ip: \u002710.33.8.173\u0027, os.name: \u0027Mac OS X\u0027, os.arch: \u0027x86_64\u0027, os.version: \u002710.10.5\u0027, java.version: \u00271.8.0_60\u0027\nDriver info: com.balfour.publishing.qa.SharedDriver\n\tat org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:79)\n\tat org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)\n\tat com.balfour.publishing.qa.pages.Page.waitForElementPresence(Page.java:86)\n\tat com.balfour.publishing.qa.pages.Page.isLoaded(Page.java:133)\n\tat com.balfour.publishing.qa.pages.sb4.Sb4HomePage.\u003cinit\u003e(Sb4HomePage.java:45)\n\tat com.balfour.publishing.qa.pages.sb4.Sb4LoginPage.loginAs(Sb4LoginPage.java:198)\n\tat com.balfour.publishing.qa.Stubs_Base.verifyTestUser(Stubs_Base.java:184)\n\tat com.balfour.publishing.qa.Stubs_SB.user_can_log_into_SB(Stubs_SB.java:385)\n\tat ✽.And user can log into SB(ProjUser.feature:16)\nCaused by: org.openqa.selenium.NoSuchElementException: no such element\n  (Session info: chrome\u003d45.0.2454.93)\n  (Driver info: chromedriver\u003d2.15.322448 (52179c1b310fec1797c81ea9a20326839860b7d3),platform\u003dWindows NT 10.0 x86_64) (WARNING: The server did not provide any stacktrace information)\nCommand duration or timeout: 10.15 seconds\nFor documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html\nBuild info: version: \u00272.45.0\u0027, revision: \u00275017cb8e7ca8e37638dc3091b2440b90a1d8686f\u0027, time: \u00272015-02-27 09:10:26\u0027\nSystem info: host: \u0027d-cmanning-mbp.local\u0027, ip: \u002710.33.8.173\u0027, os.name: \u0027Mac OS X\u0027, os.arch: \u0027x86_64\u0027, os.version: \u002710.10.5\u0027, java.version: \u00271.8.0_60\u0027\nDriver info: org.openqa.selenium.remote.RemoteWebDriver\nCapabilities [{applicationCacheEnabled\u003dfalse, rotatable\u003dfalse, mobileEmulationEnabled\u003dfalse, chrome\u003d{userDataDir\u003dC:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\scoped_dir2848_20965}, takesHeapSnapshot\u003dtrue, hasMetadata\u003dtrue, databaseEnabled\u003dfalse, handlesAlerts\u003dtrue, version\u003d45.0.2454.93, platform\u003dXP, browserConnectionEnabled\u003dfalse, nativeEvents\u003dtrue, acceptSslCerts\u003dtrue, webdriver.remote.sessionid\u003d0f532ef099b649b280dc2bda4e15d49c, locationContextEnabled\u003dtrue, webStorageEnabled\u003dtrue, takesScreenshot\u003dtrue, browserName\u003dchrome, javascriptEnabled\u003dtrue, cssSelectorsEnabled\u003dtrue}]\nSession ID: 0f532ef099b649b280dc2bda4e15d49c\n*** Element info: {Using\u003dxpath, value\u003d//a[.\u003d\u0027Book Status\u0027]}\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\n\tat sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\n\tat java.lang.reflect.Constructor.newInstance(Constructor.java:422)\n\tat org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)\n\tat org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:449)\n\tat org.openqa.selenium.By$ByXPath.findElement(By.java:357)\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)\n\tat sun.reflect.GeneratedMethodAccessor12.invoke(Unknown Source)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:497)\n\tat org.openqa.selenium.support.events.EventFiringWebDriver$2.invoke(EventFiringWebDriver.java:101)\n\tat com.sun.proxy.$Proxy16.findElement(Unknown Source)\n\tat org.openqa.selenium.support.events.EventFiringWebDriver.findElement(EventFiringWebDriver.java:184)\n\tat org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:730)\n\tat org.openqa

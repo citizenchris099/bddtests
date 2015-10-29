@@ -1,13 +1,13 @@
 Feature: Studio Balfour User Admin Screen
 
-  @pu @regression
+  @pu @regression @test
   Scenario: PU Register User completes profile
     Given logged into SB as an adviser
     When on PU Grid
     And create PU user register
     Then user can register to SB
 
-  @pu @regression @user 
+  @pu @regression @user @test
   Scenario: PU Register User can log in
     Given logged into SB as an adviser
     When on PU Grid
@@ -15,14 +15,14 @@ Feature: Studio Balfour User Admin Screen
     Then user can register to SB
     And user can log into SB
 
-  @pu @regression
+  @pu @regression @test
   Scenario: PU Grid Search
     Given registered PU user
     And logged into SB as an adviser
     When on PU Grid
     Then user is found on PU Grid
 
-  @pu @regression 
+  @pu @regression @test
   Scenario: PU Grid Edit First Name persist on grid
     Given registered PU user
     And logged into SB as an adviser

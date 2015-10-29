@@ -176,7 +176,7 @@ Feature: Log out of Studio Balfour v3
     And edit user info on PU edit fake user screen
     Then edits to user should persist on PU grid
 
-  @regression @fu @pu  @test
+  @regression @fu @pu  
   Scenario: Edit fake user info from PU edit fake user screen persist on profile
     Given fake user created
     And logged into SB as an adviser
@@ -184,7 +184,7 @@ Feature: Log out of Studio Balfour v3
     And edit user info on PU edit fake user screen
     Then edits to user should persist on user profile
 
-  @regression @fu @ua  @test
+  @regression @fu @ua 
   Scenario: Edit fake user info from PU edit fake user screen persist UA grid
     Given fake user created
     And logged into SB as an adviser
@@ -200,7 +200,7 @@ Feature: Log out of Studio Balfour v3
     And edit user info on PU edit fake user screen
     Then edits to user should persist on PU edit fake user screen
 
-  @ua @regression @fu  @test
+  @ua @regression @fu 
   Scenario: user disabled from UA cannot log in
     Given fake user created
     And logged into SB as >adviser
@@ -208,7 +208,7 @@ Feature: Log out of Studio Balfour v3
     And disable user
     Then user cannot log into SB
 
-  @regression @fu @pu  @test
+  @regression @fu @pu 
   Scenario: user disabled from PU cannot log in
     Given fake user created
     And logged into SB as an adviser
@@ -216,7 +216,7 @@ Feature: Log out of Studio Balfour v3
     And disable user from PU
     Then user cannot log into SB
 
-  @pu @regression @fu  @test
+  @pu @regression @fu  
   Scenario: fake user re-enabled from PU can log in
     Given PU disabled fake user can't log in
     When user re-enabled from PU
