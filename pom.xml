@@ -7,8 +7,8 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>com.balfour.publishing.qa</groupId>
-			<artifactId>veggie_SBv3_pagelibrary</artifactId>
+			<groupId>com.scienergy.development.qa</groupId>
+			<artifactId>scienergy_pagelibrary</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
