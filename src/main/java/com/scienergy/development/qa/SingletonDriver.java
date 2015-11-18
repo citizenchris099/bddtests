@@ -1,4 +1,4 @@
-package com.balfour.publishing.qa;
+package com.scienergy.development.qa;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

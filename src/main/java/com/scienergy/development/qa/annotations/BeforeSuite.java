@@ -1,4 +1,4 @@
-package com.balfour.publishing.qa.annotations;
+package com.scienergy.development.qa.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

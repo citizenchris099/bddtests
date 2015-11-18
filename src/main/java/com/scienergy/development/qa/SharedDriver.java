@@ -1,4 +1,4 @@
-package com.balfour.publishing.qa;
+package com.scienergy.development.qa;
 
 import java.net.MalformedURLException;
 import java.net.URL;

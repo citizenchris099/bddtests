@@ -5,7 +5,7 @@ import org.junit.runner.Description;
 import org.junit.runner.Runner;
 import org.junit.runner.notification.RunNotifier;
 
-import com.balfour.publishing.qa.annotations.*;
+import com.scienergy.development.qa.annotations.*;
 
 import cucumber.api.junit.Cucumber;
 

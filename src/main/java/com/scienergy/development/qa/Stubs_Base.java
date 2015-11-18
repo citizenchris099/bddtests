@@ -1,4 +1,4 @@
-package com.balfour.publishing.qa;
+package com.scienergy.development.qa;
 
 import java.sql.SQLException;
 import java.util.Random;
@@ -6,16 +6,16 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 
-import com.balfour.publishing.TestPOJO;
-import com.balfour.publishing.Test_Enviornment;
-import com.balfour.publishing.Test_EnviornmentPOJO;
-import com.balfour.publishing.qa.pages.Page;
-import com.balfour.publishing.qa.pages.sb4.Sb4HomePage;
-import com.balfour.publishing.qa.pages.sb4.Sb4LoginPage;
-import com.balfour.publishing.qa.pages.sb4.Sb4NewUserRegProf;
-import com.balfour.publishing.qa.pages.sb4.Sb4ProfilePage;
-import com.balfour.publishing.qa.pages.sb4.Sb4ProjectUserPage;
-import com.balfour.publishing.qa.pages.sb4.Sb4UserAdminPage;
+import com.scienergy.development.TestPOJO;
+import com.scienergy.development.Test_Enviornment;
+import com.scienergy.development.Test_EnviornmentPOJO;
+import com.scienergy.development.qa.pages.Page;
+import com.scienergy.development.qa.pages.sb4.Sb4HomePage;
+import com.scienergy.development.qa.pages.sb4.Sb4LoginPage;
+import com.scienergy.development.qa.pages.sb4.Sb4NewUserRegProf;
+import com.scienergy.development.qa.pages.sb4.Sb4ProfilePage;
+import com.scienergy.development.qa.pages.sb4.Sb4ProjectUserPage;
+import com.scienergy.development.qa.pages.sb4.Sb4UserAdminPage;
 
 import cucumber.api.java.Before;
 

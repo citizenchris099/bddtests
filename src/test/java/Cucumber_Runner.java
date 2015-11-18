@@ -1,10 +1,10 @@
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
-import com.balfour.publishing.Test_Enviornment;
-import com.balfour.publishing.qa.SharedDriver;
-import com.balfour.publishing.qa.annotations.AfterSuite;
-import com.balfour.publishing.qa.annotations.BeforeSuite;
+import com.scienergy.development.Test_Enviornment;
+import com.scienergy.development.qa.SharedDriver;
+import com.scienergy.development.qa.annotations.AfterSuite;
+import com.scienergy.development.qa.annotations.BeforeSuite;
 
 import cucumber.api.junit.Cucumber;
 
