@@ -1,34 +1,38 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("ProjUser.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("login.feature");
 formatter.feature({
   "line": 1,
-  "name": "Studio Balfour User Admin Screen",
+  "name": "Log In to Spec",
   "description": "",
-  "id": "studio-balfour-user-admin-screen",
+  "id": "log-in-to-spec",
   "keyword": "Feature"
 });
 formatter.before({
-  "duration": 10038765154,
+  "duration": 9904571621,
   "status": "passed"
 });
 formatter.before({
-  "duration": 79226084,
+  "duration": 3394122109,
   "status": "passed"
 });
 formatter.scenario({
   "line": 4,
-  "name": "PU Register User completes profile",
+  "name": "successful log in",
   "description": "",
-  "id": "studio-balfour-user-admin-screen;pu-register-user-completes-profile",
+  "id": "log-in-to-spec;successful-log-in",
   "type": "scenario",
   "keyword": "Scenario",
   "tags": [
     {
       "line": 3,
-      "name": "@pu"
+      "name": "@regression"
     },
     {
       "line": 3,
-      "name": "@regression"
+      "name": "@login"
+    },
+    {
+      "line": 3,
+      "name": "@smoke"
     },
     {
       "line": 3,
@@ -38,151 +42,209 @@ formatter.scenario({
 });
 formatter.step({
   "line": 5,
-  "name": "logged into SB as an adviser",
+  "name": "on login page",
   "keyword": "Given "
 });
 formatter.step({
   "line": 6,
-  "name": "on PU Grid",
+  "name": "enter valid credentials",
   "keyword": "When "
 });
 formatter.step({
   "line": 7,
-  "name": "create PU user register",
-  "keyword": "And "
+  "name": "arrive at main spec page",
+  "keyword": "Then "
 });
 formatter.step({
   "line": 8,
-  "name": "user can register to SB",
-  "keyword": "Then "
+  "name": "log out of spec",
+  "keyword": "And "
 });
 formatter.match({
-  "location": "Stubs_SB.logged_into_SB_as_an_adviser()"
+  "location": "Stubs_Spec.on_login_page()"
 });
 formatter.result({
-  "duration": 31753132724,
+  "duration": 476355393,
   "status": "passed"
 });
 formatter.match({
-  "location": "Stubs_SB.on_PU_Grid()"
+  "location": "Stubs_Spec.enter_valid_credentials()"
 });
 formatter.result({
-  "duration": 2931808870,
+  "duration": 4262596566,
   "status": "passed"
 });
 formatter.match({
-  "location": "Stubs_SB.create_PU_user_register()"
+  "location": "Stubs_Spec.arrive_at_main_spec_page()"
 });
 formatter.result({
-  "duration": 20075637304,
+  "duration": 164405619,
   "status": "passed"
 });
 formatter.match({
-  "location": "Stubs_SB.user_can_register_to_SB()"
+  "location": "Stubs_Spec.log_out_of_spec()"
 });
 formatter.result({
-  "duration": 13922250233,
-  "status": "passed"
-});
-formatter.after({
-  "duration": 26718,
+  "duration": 2748239250,
   "status": "passed"
 });
 formatter.embedding("image/png", "embedded0.png");
 formatter.after({
-  "duration": 440647579,
+  "duration": 187775050,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 27553,
   "status": "passed"
 });
 formatter.before({
-  "duration": 1920110955,
+  "duration": 30488443,
   "status": "passed"
 });
 formatter.before({
-  "duration": 96620740,
+  "duration": 672959179,
   "status": "passed"
 });
 formatter.scenario({
   "line": 11,
-  "name": "PU Register User can log in",
+  "name": "invalid user name receives msg and can\u0027t log in",
   "description": "",
-  "id": "studio-balfour-user-admin-screen;pu-register-user-can-log-in",
+  "id": "log-in-to-spec;invalid-user-name-receives-msg-and-can\u0027t-log-in",
   "type": "scenario",
   "keyword": "Scenario",
   "tags": [
-    {
-      "line": 10,
-      "name": "@pu"
-    },
     {
       "line": 10,
       "name": "@regression"
     },
     {
       "line": 10,
-      "name": "@user"
+      "name": "@login"
     },
     {
       "line": 10,
-      "name": "@test"
+      "name": "@smoke"
     }
   ]
 });
 formatter.step({
   "line": 12,
-  "name": "logged into SB as an adviser",
+  "name": "on login page",
   "keyword": "Given "
 });
 formatter.step({
   "line": 13,
-  "name": "on PU Grid",
+  "name": "enter invalid username",
   "keyword": "When "
 });
 formatter.step({
   "line": 14,
-  "name": "create PU user register",
-  "keyword": "And "
-});
-formatter.step({
-  "line": 15,
-  "name": "user can register to SB",
+  "name": "user receives error msg and remains on log in page",
   "keyword": "Then "
 });
+formatter.match({
+  "location": "Stubs_Spec.on_login_page()"
+});
+formatter.result({
+  "duration": 248102511,
+  "status": "passed"
+});
+formatter.match({
+  "location": "Stubs_Spec.enter_invalid_username()"
+});
+formatter.result({
+  "duration": 2382897583,
+  "status": "passed"
+});
+formatter.match({
+  "location": "Stubs_Spec.user_receives_error_msg_and_remains_on_log_in_page()"
+});
+formatter.result({
+  "duration": 182241044,
+  "status": "passed"
+});
+formatter.embedding("image/png", "embedded1.png");
+formatter.after({
+  "duration": 196848032,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 22199,
+  "status": "passed"
+});
+formatter.before({
+  "duration": 45796767,
+  "status": "passed"
+});
+formatter.before({
+  "duration": 735431434,
+  "status": "passed"
+});
+formatter.scenario({
+  "line": 17,
+  "name": "invalid password receives msg and can\u0027t log in",
+  "description": "",
+  "id": "log-in-to-spec;invalid-password-receives-msg-and-can\u0027t-log-in",
+  "type": "scenario",
+  "keyword": "Scenario",
+  "tags": [
+    {
+      "line": 16,
+      "name": "@regression"
+    },
+    {
+      "line": 16,
+      "name": "@login"
+    },
+    {
+      "line": 16,
+      "name": "@smoke"
+    }
+  ]
+});
 formatter.step({
-  "line": 16,
-  "name": "user can log into SB",
-  "keyword": "And "
+  "line": 18,
+  "name": "on login page",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 19,
+  "name": "enter invalid password",
+  "keyword": "When "
+});
+formatter.step({
+  "line": 20,
+  "name": "user receives error msg and remains on log in page",
+  "keyword": "Then "
 });
 formatter.match({
-  "location": "Stubs_SB.logged_into_SB_as_an_adviser()"
+  "location": "Stubs_Spec.on_login_page()"
 });
 formatter.result({
-  "duration": 30678111517,
+  "duration": 239611558,
   "status": "passed"
 });
 formatter.match({
-  "location": "Stubs_SB.on_PU_Grid()"
+  "location": "Stubs_Spec.enter_invalid_password()"
 });
 formatter.result({
-  "duration": 2661509193,
+  "duration": 3956657959,
   "status": "passed"
 });
 formatter.match({
-  "location": "Stubs_SB.create_PU_user_register()"
+  "location": "Stubs_Spec.user_receives_error_msg_and_remains_on_log_in_page()"
 });
 formatter.result({
-  "duration": 18094933997,
+  "duration": 203472253,
   "status": "passed"
 });
-formatter.match({
-  "location": "Stubs_SB.user_can_register_to_SB()"
-});
-formatter.result({
-  "duration": 12494275309,
+formatter.embedding("image/png", "embedded2.png");
+formatter.after({
+  "duration": 187702168,
   "status": "passed"
 });
-formatter.match({
-  "location": "Stubs_SB.user_can_log_into_SB()"
+formatter.after({
+  "duration": 20539,
+  "status": "passed"
 });
-formatter.result({
-  "duration": 48842679256,
-  "error_message": "org.openqa.selenium.TimeoutException: Timed out after 15 seconds waiting for presence of element located by: By.xpath: //a[.\u003d\u0027Book Status\u0027]\nBuild info: version: \u00272.45.0\u0027, revision: \u00275017cb8e7ca8e37638dc3091b2440b90a1d8686f\u0027, time: \u00272015-02-27 09:10:26\u0027\nSystem info: host: \u0027d-cmanning-mbp.local\u0027, ip: \u002710.33.8.173\u0027, os.name: \u0027Mac OS X\u0027, os.arch: \u0027x86_64\u0027, os.version: \u002710.10.5\u0027, java.version: \u00271.8.0_60\u0027\nDriver info: com.balfour.publishing.qa.SharedDriver\n\tat org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:79)\n\tat org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)\n\tat com.balfour.publishing.qa.pages.Page.waitForElementPresence(Page.java:86)\n\tat com.balfour.publishing.qa.pages.Page.isLoaded(Page.java:133)\n\tat com.balfour.publishing.qa.pages.sb4.Sb4HomePage.\u003cinit\u003e(Sb4HomePage.java:45)\n\tat com.balfour.publishing.qa.pages.sb4.Sb4LoginPage.loginAs(Sb4LoginPage.java:198)\n\tat com.balfour.publishing.qa.Stubs_Base.verifyTestUser(Stubs_Base.java:184)\n\tat com.balfour.publishing.qa.Stubs_SB.user_can_log_into_SB(Stubs_SB.java:385)\n\tat ✽.And user can log into SB(ProjUser.feature:16)\nCaused by: org.openqa.selenium.NoSuchElementException: no such element\n  (Session info: chrome\u003d45.0.2454.93)\n  (Driver info: chromedriver\u003d2.15.322448 (52179c1b310fec1797c81ea9a20326839860b7d3),platform\u003dWindows NT 10.0 x86_64) (WARNING: The server did not provide any stacktrace information)\nCommand duration or timeout: 10.15 seconds\nFor documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html\nBuild info: version: \u00272.45.0\u0027, revision: \u00275017cb8e7ca8e37638dc3091b2440b90a1d8686f\u0027, time: \u00272015-02-27 09:10:26\u0027\nSystem info: host: \u0027d-cmanning-mbp.local\u0027, ip: \u002710.33.8.173\u0027, os.name: \u0027Mac OS X\u0027, os.arch: \u0027x86_64\u0027, os.version: \u002710.10.5\u0027, java.version: \u00271.8.0_60\u0027\nDriver info: org.openqa.selenium.remote.RemoteWebDriver\nCapabilities [{applicationCacheEnabled\u003dfalse, rotatable\u003dfalse, mobileEmulationEnabled\u003dfalse, chrome\u003d{userDataDir\u003dC:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\scoped_dir2848_20965}, takesHeapSnapshot\u003dtrue, hasMetadata\u003dtrue, databaseEnabled\u003dfalse, handlesAlerts\u003dtrue, version\u003d45.0.2454.93, platform\u003dXP, browserConnectionEnabled\u003dfalse, nativeEvents\u003dtrue, acceptSslCerts\u003dtrue, webdriver.remote.sessionid\u003d0f532ef099b649b280dc2bda4e15d49c, locationContextEnabled\u003dtrue, webStorageEnabled\u003dtrue, takesScreenshot\u003dtrue, browserName\u003dchrome, javascriptEnabled\u003dtrue, cssSelectorsEnabled\u003dtrue}]\nSession ID: 0f532ef099b649b280dc2bda4e15d49c\n*** Element info: {Using\u003dxpath, value\u003d//a[.\u003d\u0027Book Status\u0027]}\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\n\tat sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\n\tat java.lang.reflect.Constructor.newInstance(Constructor.java:422)\n\tat org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:204)\n\tat org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:156)\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:599)\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:449)\n\tat org.openqa.selenium.By$ByXPath.findElement(By.java:357)\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)\n\tat sun.reflect.GeneratedMethodAccessor12.invoke(Unknown Source)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:497)\n\tat org.openqa.selenium.support.events.EventFiringWebDriver$2.invoke(EventFiringWebDriver.java:101)\n\tat com.sun.proxy.$Proxy16.findElement(Unknown Source)\n\tat org.openqa.selenium.support.events.EventFiringWebDriver.findElement(EventFiringWebDriver.java:184)\n\tat org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:730)\n\tat org.openqa
+});

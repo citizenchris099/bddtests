@@ -51,9 +51,9 @@ public class SharedDriver extends EventFiringWebDriver {
 	static String osx9 = "OS X 10.9";
 	static String linux = "Linux";
 
-//	 private static final WebDriver REAL_DRIVER = initLocal();
+	 private static final WebDriver REAL_DRIVER = initLocal();
 //	private static final WebDriver REAL_DRIVER = initRemoteFF(win8, "37.0");
-	private static final WebDriver REAL_DRIVER = initRemoteCh(win10, "45.0");
+//	private static final WebDriver REAL_DRIVER = initRemoteCh(win10, "45.0");
 
 	private static final Thread CLOSE_THREAD = new Thread() {
 		@Override

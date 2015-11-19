@@ -1,7 +1,7 @@
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
-import com.scienergy.development.Test_Enviornment;
+import com.scienergy.development.Test_Environment;
 import com.scienergy.development.qa.SharedDriver;
 import com.scienergy.development.qa.annotations.AfterSuite;
 import com.scienergy.development.qa.annotations.BeforeSuite;
@@ -10,7 +10,7 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 
-@Cucumber.Options(monochrome = true, features = { "src/main/resources" }, tags = { "@test" }, format = {
+@Cucumber.Options(monochrome = true, features = { "src/main/resources" }, tags = { "@login" }, format = {
 		"pretty", "html:target/cucumber", "json:target/cucumber.json" }
 )
 
