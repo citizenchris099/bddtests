@@ -51,9 +51,9 @@ public class SharedDriver extends EventFiringWebDriver {
 	static String osx9 = "OS X 10.9";
 	static String linux = "Linux";
 
-	 private static final WebDriver REAL_DRIVER = initLocal();
+//	 private static final WebDriver REAL_DRIVER = initLocal();
 //	private static final WebDriver REAL_DRIVER = initRemoteFF(win8, "37.0");
-//	private static final WebDriver REAL_DRIVER = initRemoteCh(win10, "45.0");
+	private static final WebDriver REAL_DRIVER = initRemoteCh(win10, "46.0");
 
 	private static final Thread CLOSE_THREAD = new Thread() {
 		@Override
@@ -163,7 +163,7 @@ public class SharedDriver extends EventFiringWebDriver {
 		try {
 			rd = new RemoteWebDriver(
 					new URL(
-							"http://citizenchris:a8f0eeb8-bb02-4788-b6d1-3680f480930c@ondemand.saucelabs.com:80/wd/hub"),
+							"http://SCIenergyChris:72c2a9c3-9d7e-462c-bb46-9b5626fd903d@ondemand.saucelabs.com:80/wd/hub"),
 					caps);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
