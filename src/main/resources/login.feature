@@ -1,11 +1,10 @@
 Feature: Log In to Spec
 
-  @regression @login @smoke @test
+  @regression @login @loggedIn @smoke
   Scenario: successful log in
     Given on login page
     When enter valid credentials
     Then arrive at main spec page
-    And log out of spec
 
   @regression @login @smoke
   Scenario: invalid user name receives msg and can't log in

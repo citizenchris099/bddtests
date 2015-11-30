@@ -10,7 +10,7 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 
-@Cucumber.Options(monochrome = true, features = { "src/main/resources" }, tags = { "@login" }, format = {
+@Cucumber.Options(monochrome = true, features = { "src/main/resources" }, tags = { "@smoke" }, format = {
 		"pretty", "html:target/cucumber", "json:target/cucumber.json" }
 )
 

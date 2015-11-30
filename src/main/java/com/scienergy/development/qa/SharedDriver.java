@@ -50,9 +50,10 @@ public class SharedDriver extends EventFiringWebDriver {
 	static String win7 = "Windows 7";
 	static String osx9 = "OS X 10.9";
 	static String linux = "Linux";
+	static String sauceUrl = "http://SCIenergyChris:72c2a9c3-9d7e-462c-bb46-9b5626fd903d@ondemand.saucelabs.com:80/wd/hub";
 
-//	 private static final WebDriver REAL_DRIVER = initLocal();
-//	private static final WebDriver REAL_DRIVER = initRemoteFF(win8, "37.0");
+	// private static final WebDriver REAL_DRIVER = initLocal();
+	// private static final WebDriver REAL_DRIVER = initRemoteFF(win8, "37.0");
 	private static final WebDriver REAL_DRIVER = initRemoteCh(win10, "46.0");
 
 	private static final Thread CLOSE_THREAD = new Thread() {
@@ -77,9 +78,9 @@ public class SharedDriver extends EventFiringWebDriver {
 			throw new UnsupportedOperationException(
 					"You shouldn't close this WebDriver. It's shared and will close when the JVM exits.");
 		}
-		
+
 		//
-		
+
 		super.close();
 	}
 
@@ -94,37 +95,35 @@ public class SharedDriver extends EventFiringWebDriver {
 			byte[] screenshot = getScreenshotAs(OutputType.BYTES);
 			scenario.embed(screenshot, "image/png");
 		} catch (WebDriverException somePlatformsDontSupportScreenshots) {
-			System.err
-					.println(somePlatformsDontSupportScreenshots.getMessage());
+			System.err.println(somePlatformsDontSupportScreenshots.getMessage());
 		}
 	}
 
-	
-//	public static DesiredCapabilities initBuild(String OS, String Vers, String Brows){
-//		DesiredCapabilities caps = null;
-//		
-//		if("FF".equals(Brows)){
-//			caps = DesiredCapabilities.firefox();
-//			caps.setCapability("browserName", "Firefox");
-//			caps.setCapability("tags", new String[] { "Firefox", Vers, OS });
-//		}
-//		else if("Chr".equals(Brows)){
-//			caps = DesiredCapabilities.chrome();
-//			caps.setCapability("browserName", "Chrome");
-//			caps.setCapability("tags", new String[] { "Chrome", Vers, OS });
-//		}
-//		else {
-//			
-//		}
-//		
-//		caps.setCapability("platform", OS);
-//		caps.setCapability("version", Vers);
-//		caps.setCapability("name", "BDD Test Suite");
-//		return caps;
-//		
-//	}
-	
-	
+	// public static DesiredCapabilities initBuild(String OS, String Vers,
+	// String Brows){
+	// DesiredCapabilities caps = null;
+	//
+	// if("FF".equals(Brows)){
+	// caps = DesiredCapabilities.firefox();
+	// caps.setCapability("browserName", "Firefox");
+	// caps.setCapability("tags", new String[] { "Firefox", Vers, OS });
+	// }
+	// else if("Chr".equals(Brows)){
+	// caps = DesiredCapabilities.chrome();
+	// caps.setCapability("browserName", "Chrome");
+	// caps.setCapability("tags", new String[] { "Chrome", Vers, OS });
+	// }
+	// else {
+	//
+	// }
+	//
+	// caps.setCapability("platform", OS);
+	// caps.setCapability("version", Vers);
+	// caps.setCapability("name", "BDD Test Suite");
+	// return caps;
+	//
+	// }
+
 	// method for testing FireFox browsers using SauceLabs
 	public static WebDriver initRemoteFF(String OS, String Vers) {
 
@@ -138,8 +137,7 @@ public class SharedDriver extends EventFiringWebDriver {
 
 		try {
 			rd = new RemoteWebDriver(
-					new URL(
-							"http://citizenchris:a8f0eeb8-bb02-4788-b6d1-3680f480930c@ondemand.saucelabs.com:80/wd/hub"),
+					new URL("http://citizenchris:a8f0eeb8-bb02-4788-b6d1-3680f480930c@ondemand.saucelabs.com:80/wd/hub"),
 					caps);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -161,10 +159,7 @@ public class SharedDriver extends EventFiringWebDriver {
 		caps.setCapability("maxDuration", 10800);
 
 		try {
-			rd = new RemoteWebDriver(
-					new URL(
-							"http://SCIenergyChris:72c2a9c3-9d7e-462c-bb46-9b5626fd903d@ondemand.saucelabs.com:80/wd/hub"),
-					caps);
+			rd = new RemoteWebDriver(new URL(sauceUrl), caps);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
@@ -184,8 +179,7 @@ public class SharedDriver extends EventFiringWebDriver {
 
 		try {
 			rd = new RemoteWebDriver(
-					new URL(
-							"http://citizenchris:a8f0eeb8-bb02-4788-b6d1-3680f480930c@ondemand.saucelabs.com:80/wd/hub"),
+					new URL("http://citizenchris:a8f0eeb8-bb02-4788-b6d1-3680f480930c@ondemand.saucelabs.com:80/wd/hub"),
 					caps);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -208,8 +202,7 @@ public class SharedDriver extends EventFiringWebDriver {
 
 		try {
 			rd = new RemoteWebDriver(
-					new URL(
-							"http://citizenchris:a8f0eeb8-bb02-4788-b6d1-3680f480930c@ondemand.saucelabs.com:80/wd/hub"),
+					new URL("http://citizenchris:a8f0eeb8-bb02-4788-b6d1-3680f480930c@ondemand.saucelabs.com:80/wd/hub"),
 					caps);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -231,8 +224,7 @@ public class SharedDriver extends EventFiringWebDriver {
 
 		try {
 			rd = new RemoteWebDriver(
-					new URL(
-							"http://citizenchris:a8f0eeb8-bb02-4788-b6d1-3680f480930c@ondemand.saucelabs.com:80/wd/hub"),
+					new URL("http://citizenchris:a8f0eeb8-bb02-4788-b6d1-3680f480930c@ondemand.saucelabs.com:80/wd/hub"),
 					caps);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
