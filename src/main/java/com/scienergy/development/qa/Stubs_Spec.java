@@ -69,6 +69,22 @@ public class Stubs_Spec {
 		taskForm.put("date picker", "edidTaskDueDate");
 		taskForm.put("labels", "taskLabels");
 		taskForm.put("assignee", "taskAssignee");
+		taskForm.put("edit sumary", "edidTaskSummary");
+		taskForm.put("edit description", "edidTaskDescription");
+		taskForm.put("add location", "taskLocation");
+		taskForm.put("add date", "taskDueDate");
+		taskForm.put("add labels", "taskLabels");
+		taskForm.put("add assignee", "taskAssignee");
+		taskForm.put("edit location", "existingLocation");
+		taskForm.put("edit assignee", "existingAssignee");
+		taskForm.put("edit date", "edidTaskDueDate");
+		taskForm.put("edit labels", "existingLabels");
+		taskForm.put("add comment", "editTaskCommentField");
+		taskForm.put("block task", "blockTask");
+		taskForm.put("cancel task", "cancelTask");
+		taskForm.put("unblock", "unBlockTask");
+		taskForm.put("reopen", "reopenTask");
+		taskForm.put("edit status", "editStatus");
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
@@ -83,7 +99,7 @@ public class Stubs_Spec {
 		taskFind.put("assignee", obj.getAssignee());
 	}
 
-	@After ("@loggedIn")
+	@After("@loggedIn")
 	public void logOut() throws InterruptedException {
 		new SpecMainPage(driver).LogOut();
 	}
@@ -174,7 +190,7 @@ public class Stubs_Spec {
 		taskFind(tp0);
 		specMain.LogOut().loginAs(tI0.getMiscUname001(), tI0.getMiscPword001()).findTask(taskFind.get(arg1), tp0);
 	}
-	
+
 	@When("^task creator searches for task using lable$")
 	public void task_creator_searches_for_task_using_lable() throws Throwable {
 		specMain.LogOut().loginAs(tI0.getMiscUname001(), tI0.getMiscPword001()).findTask(tp0.getLabels(), tp0);
@@ -182,8 +198,81 @@ public class Stubs_Spec {
 
 	@Then("^task is displayed in task queue$")
 	public void task_is_displayed_in_task_queue() throws Throwable {
+		System.out.println("tp0 summary = " + tp0.getSummary());
 		if (specMain.checkTaskInQueuePresent(tp0.getSummary()) < 1) {
 			throw new RuntimeException("Task not present in queue");
+		}
+	}
+
+	@Then("^task info appears correct in the edit task area$")
+	public void task_info_appears_correct_in_the_edit_task_area() throws Throwable {
+		tp1 = specMain.checkTask(tp0);
+		
+		System.out.println("tp0 labels = " + tp0.getLabelsPresent() + " tp1 labels = " + tp1.getLabelsPresent());
+		System.out.println("tp0 canceled = " + tp0.getCanceled() + " tp1 canceled = " + tp1.getCanceled());
+		System.out.println("tp0 blocked = " + tp0.getBlocked() + " tp1 blocked = " + tp1.getBlocked());
+		System.out
+				.println("tp0 location = " + tp0.getLocationPresent() + " tp1 location = " + tp1.getLocationPresent());
+		System.out
+				.println("tp0 assignee = " + tp0.getAssigneePresent() + " tp1 assignee = " + tp1.getAssigneePresent());
+		System.out.println("tp0 date = " + tp0.getDueDate() + " tp1 date = " + tp1.getDueDate());
+		System.out.println("tp0 description = " + tp0.getDescription() + " tp1 description = " + tp1.getDescription());
+		System.out.println("tp0 summary = " + tp0.getSummary() + " tp1 summary = " + tp1.getSummary());
+		
+		if (tp0.hashCode() != tp1.hashCode()) {
+			throw new RuntimeException("Task Info did not match");
+		}
+	}
+
+	/**
+	 * edit task stubs
+	 */
+
+	@Given("^task is selected$")
+	public void task_is_selected() throws Throwable {
+		specMain.clickTaskInQueue(tp0.getSummary());
+	}
+
+	@When("^\"([^\"]*)\" change is made to task$")
+	public void change_is_made_to_task(String arg1) throws Throwable {
+		List<String> tasks = new ArrayList<String>();
+		System.out.println("edit argument passed = " + arg1);
+		String[] taskChoices = arg1.split(",");
+		for (String c : taskChoices) {
+			tasks.add(taskForm.get(c));
+		}
+		editTask = new String[tasks.size()];
+		tasks.toArray(editTask);
+		tp1 = taskInfoClone(tp0);
+		taskInfoEdit(tp1, editTask, 1);
+		specMain.editTask(tp0, tp1, editTask);
+	}
+
+	@Then("^edited task is displayed in task queue$")
+	public void edited_task_is_displayed_in_task_queue() throws Throwable {
+		if (specMain.LogOut().loginAs(tI0.getMiscUname001(), tI0.getMiscPword001())
+				.checkTaskInQueuePresent(tp1.getSummary()) < 1) {
+			throw new RuntimeException("Edited Task not present in queue");
+		}
+	}
+
+	@Then("^the change persists within the edit task area$")
+	public void the_change_persists_within_the_edit_task_area() throws Throwable {
+		tp2 = specMain.clickTaskInQueue(tp1.getSummary()).checkTask(tp1);
+
+		System.out.println("tp1 labels = " + tp1.getLabelsPresent() + " tp2 labels = " + tp2.getLabelsPresent());
+		System.out.println("tp1 canceled = " + tp1.getCanceled() + " tp2 canceled = " + tp2.getCanceled());
+		System.out.println("tp1 blocked = " + tp1.getBlocked() + " tp2 blocked = " + tp2.getBlocked());
+		System.out
+				.println("tp1 location = " + tp1.getLocationPresent() + " tp2 location = " + tp2.getLocationPresent());
+		System.out
+				.println("tp1 assignee = " + tp1.getAssigneePresent() + " tp2 assignee = " + tp2.getAssigneePresent());
+		System.out.println("tp1 date = " + tp1.getDueDate() + " tp2 date = " + tp2.getDueDate());
+		System.out.println("tp1 description = " + tp1.getDescription() + " tp2 description = " + tp2.getDescription());
+		System.out.println("tp1 summary = " + tp1.getSummary() + " tp2 summary = " + tp2.getSummary());
+
+		if (tp1.hashCode() != tp2.hashCode()) {
+			throw new RuntimeException("Task Info did not match");
 		}
 	}
 
@@ -216,7 +305,7 @@ public class Stubs_Spec {
 		edit.setSummary(orig.getSummary());
 		edit.setDescription(orig.getDescription());
 		edit.setLocation(orig.getLocation());
-		edit.setLocationPresent(orig.getAssigneePresent());
+		edit.setLocationPresent(orig.getLocationPresent());
 		edit.setDueDate(orig.getDueDate());
 		if (orig.getLabels() != null) {
 			edit.setLabels(orig.getLabels());

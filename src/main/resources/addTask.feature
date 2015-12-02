@@ -66,6 +66,59 @@ Feature: add task
       | description,labels,assignee,location,due date    | 
       | description,labels,assignee,location,date picker | 
       
+      
+  @regression @loggedIn @addTask @test
+  Scenario Outline: newly added task appears correct in edit task area immediately after entry
+    Given on main spec page
+    When a task is created with "<task>"
+    Then task is displayed in task queue
+    And task is selected
+    And task info appears correct in the edit task area
+    
+     Examples: 
+      | task                                             | 
+      | sumary only                                      | 
+      | description                                      | 
+      | location                                         | 
+      | due date                                         | 
+      | date picker                                      |
+      | labels                                           | 
+      | assignee                                         | 
+      | description,location                             | 
+      | description,due date                             | 
+      | description,date picker                          | 
+      | description,labels                               | 
+      | description,assignee                             | 
+      | location,due date                                | 
+      | location,date picker                             | 
+      | location,labels                                  | 
+      | location,assignee                                | 
+      | due date,labels                                  | 
+      | due date,assignee                                | 
+      | labels,date picker                               | 
+      | labels,assignee                                  | 
+      | assignee,date picker                             | 
+      | description,location,due date                    | 
+      | location,due date,labels                         | 
+      | due date,labels,assignee                         | 
+      | description,location,date picker                 | 
+      | location,date picker,labels                      | 
+      | date picker,labels,assignee                      | 
+      | description,location,assignee                    | 
+      | description,date picker,assignee                 | 
+      | description,labels,assignee                      | 
+      | description,location,due date,labels             | 
+      | location,due date,labels,assignee                | 
+      | due date,labels,assignee,description             | 
+      | description,location,date picker,labels          | 
+      | location,date picker,labels,assignee             | 
+      | date picker,labels,assignee,description          | 
+      | description,location,assignee,labels             | 
+      | description,date picker,assignee,labels          | 
+      | description,labels,assignee,location             | 
+      | description,labels,assignee,location,due date    | 
+      | description,labels,assignee,location,date picker |  
+      
 
 
   @regression @addTask @loggedIn
@@ -158,7 +211,7 @@ Feature: add task
       | description,labels,assignee,location,date picker | location    |
       
       
-  @regression @addTask @loggedIn @test  
+  @regression @addTask @loggedIn
   Scenario Outline: task is found by task creator in task queue when searching by lable
     Given a task is created with "<task>"
     When task creator searches for task using lable

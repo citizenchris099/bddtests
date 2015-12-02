@@ -7,11 +7,11 @@ formatter.feature({
   "keyword": "Feature"
 });
 formatter.before({
-  "duration": 4581349512,
+  "duration": 5895956256,
   "status": "passed"
 });
 formatter.before({
-  "duration": 3378242726,
+  "duration": 6762859225,
   "status": "passed"
 });
 formatter.background({
@@ -40,21 +40,21 @@ formatter.match({
   "location": "Stubs_Spec.on_login_page()"
 });
 formatter.result({
-  "duration": 665301564,
+  "duration": 572913954,
   "status": "passed"
 });
 formatter.match({
   "location": "Stubs_Spec.enter_valid_credentials()"
 });
 formatter.result({
-  "duration": 2129654309,
+  "duration": 3082426375,
   "status": "passed"
 });
 formatter.match({
   "location": "Stubs_Spec.arrive_at_main_spec_page()"
 });
 formatter.result({
-  "duration": 193658072,
+  "duration": 203002370,
   "status": "passed"
 });
 formatter.scenario({
@@ -97,7 +97,7 @@ formatter.match({
   "location": "Stubs_Spec.on_main_spec_page()"
 });
 formatter.result({
-  "duration": 175197048,
+  "duration": 185413323,
   "status": "passed"
 });
 formatter.match({
@@ -110,24 +110,32 @@ formatter.match({
   "location": "Stubs_Spec.a_task_is_created_with(String)"
 });
 formatter.result({
-  "duration": 2268025200,
+  "duration": 3398764066,
   "status": "passed"
 });
 formatter.match({
   "location": "Stubs_Spec.task_is_displayed_in_task_queue()"
 });
 formatter.result({
-  "duration": 218554015,
+  "duration": 222827186,
   "status": "passed"
 });
 formatter.embedding("image/png", "embedded0.png");
 formatter.after({
-  "duration": 992438642,
+  "duration": 919074885,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1108641933,
+  "duration": 1461917728,
   "status": "passed"
+});
+formatter.uri("editTask.feature");
+formatter.feature({
+  "line": 1,
+  "name": "add task",
+  "description": "",
+  "id": "add-task",
+  "keyword": "Feature"
 });
 formatter.uri("login.feature");
 formatter.feature({
@@ -138,11 +146,11 @@ formatter.feature({
   "keyword": "Feature"
 });
 formatter.before({
-  "duration": 72200347,
+  "duration": 74373037,
   "status": "passed"
 });
 formatter.before({
-  "duration": 2619655101,
+  "duration": 4023411047,
   "status": "passed"
 });
 formatter.scenario({
@@ -190,38 +198,38 @@ formatter.match({
   "location": "Stubs_Spec.on_login_page()"
 });
 formatter.result({
-  "duration": 178517195,
+  "duration": 229423267,
   "status": "passed"
 });
 formatter.match({
   "location": "Stubs_Spec.enter_valid_credentials()"
 });
 formatter.result({
-  "duration": 2057311968,
+  "duration": 2560956636,
   "status": "passed"
 });
 formatter.match({
   "location": "Stubs_Spec.arrive_at_main_spec_page()"
 });
 formatter.result({
-  "duration": 162374375,
+  "duration": 245124688,
   "status": "passed"
 });
 formatter.embedding("image/png", "embedded1.png");
 formatter.after({
-  "duration": 890810156,
+  "duration": 1060821133,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1103428775,
+  "duration": 1410622448,
   "status": "passed"
 });
 formatter.before({
-  "duration": 97647113,
+  "duration": 79102143,
   "status": "passed"
 });
 formatter.before({
-  "duration": 2575934291,
+  "duration": 3976426893,
   "status": "passed"
 });
 formatter.scenario({
@@ -265,34 +273,34 @@ formatter.match({
   "location": "Stubs_Spec.on_login_page()"
 });
 formatter.result({
-  "duration": 190290348,
+  "duration": 189656194,
   "status": "passed"
 });
 formatter.match({
   "location": "Stubs_Spec.enter_invalid_username()"
 });
 formatter.result({
-  "duration": 1935141545,
+  "duration": 2104588207,
   "status": "passed"
 });
 formatter.match({
   "location": "Stubs_Spec.user_receives_error_msg_and_remains_on_log_in_page()"
 });
 formatter.result({
-  "duration": 178415906,
+  "duration": 190369025,
   "status": "passed"
 });
 formatter.embedding("image/png", "embedded2.png");
 formatter.after({
-  "duration": 432838301,
+  "duration": 360490651,
   "status": "passed"
 });
 formatter.before({
-  "duration": 74061057,
+  "duration": 75201863,
   "status": "passed"
 });
 formatter.before({
-  "duration": 2550919966,
+  "duration": 3646455490,
   "status": "passed"
 });
 formatter.scenario({
@@ -336,26 +344,26 @@ formatter.match({
   "location": "Stubs_Spec.on_login_page()"
 });
 formatter.result({
-  "duration": 192461132,
+  "duration": 232491207,
   "status": "passed"
 });
 formatter.match({
   "location": "Stubs_Spec.enter_invalid_password()"
 });
 formatter.result({
-  "duration": 1636072144,
+  "duration": 2233034142,
   "status": "passed"
 });
 formatter.match({
   "location": "Stubs_Spec.user_receives_error_msg_and_remains_on_log_in_page()"
 });
 formatter.result({
-  "duration": 183721089,
+  "duration": 174346060,
   "status": "passed"
 });
 formatter.embedding("image/png", "embedded3.png");
 formatter.after({
-  "duration": 484847230,
+  "duration": 391458930,
   "status": "passed"
 });
 formatter.uri("taskFilters.feature");
@@ -367,11 +375,11 @@ formatter.feature({
   "keyword": "Feature"
 });
 formatter.before({
-  "duration": 82573541,
+  "duration": 76194916,
   "status": "passed"
 });
 formatter.before({
-  "duration": 2403254288,
+  "duration": 3594407077,
   "status": "passed"
 });
 formatter.background({
@@ -400,21 +408,21 @@ formatter.match({
   "location": "Stubs_Spec.on_login_page()"
 });
 formatter.result({
-  "duration": 178334805,
+  "duration": 198372965,
   "status": "passed"
 });
 formatter.match({
   "location": "Stubs_Spec.enter_valid_credentials()"
 });
 formatter.result({
-  "duration": 1986403276,
+  "duration": 2541946417,
   "status": "passed"
 });
 formatter.match({
   "location": "Stubs_Spec.arrive_at_main_spec_page()"
 });
 formatter.result({
-  "duration": 185854540,
+  "duration": 181258125,
   "status": "passed"
 });
 formatter.scenario({
@@ -462,30 +470,30 @@ formatter.match({
   "location": "Stubs_Spec.All_Tasks_is_active()"
 });
 formatter.result({
-  "duration": 592585336,
+  "duration": 771312806,
   "status": "passed"
 });
 formatter.match({
   "location": "Stubs_Spec.click_My_Tasks()"
 });
 formatter.result({
-  "duration": 581421851,
+  "duration": 806489889,
   "status": "passed"
 });
 formatter.match({
   "location": "Stubs_Spec.All_Tasks_is_in_active()"
 });
 formatter.result({
-  "duration": 171362845,
+  "duration": 197268610,
   "status": "passed"
 });
 formatter.embedding("image/png", "embedded4.png");
 formatter.after({
-  "duration": 803118068,
+  "duration": 926629561,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1137451295,
+  "duration": 1568739886,
   "status": "passed"
 });
 });
