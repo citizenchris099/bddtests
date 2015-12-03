@@ -1,4 +1,4 @@
-Feature: add task
+Feature: edit task
 
   Background:
 	Given on login page
@@ -16,7 +16,7 @@ Feature: add task
     
      Examples: 
       | add         | edit        |
-#      | sumary only | edit sumary |    
+      | sumary only | edit sumary |    
     
   @regression @loggedIn @edit
   Scenario Outline: changest made to task persist in the edit task area
@@ -43,10 +43,10 @@ Feature: add task
 #      | sumary only | add labels |
 #      | sumary only | add assignee |
 #      | sumary only | edit date |
-      | sumary only | edit description,add location |
-      | sumary only | edit description,add location,add date |
-      | sumary only | edit description,add location,add date,add labels |
-      | sumary only | edit description,add location,add date,add labels,add assignee |
+#      | sumary only | edit description,add location |
+#      | sumary only | edit description,add location,add date |
+#      | sumary only | edit description,add location,add date,add labels |
+#      | sumary only | edit description,add location,add date,add labels,add assignee |
    
   
       

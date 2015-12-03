@@ -6,7 +6,7 @@ Feature: add task
     Then arrive at main spec page
     
     
-  @smoke @loggedIn
+  @smoke @loggedIn @test
   Scenario Outline: task appears in task queue immediately after creation
     Given on main spec page
     When a task is created with "<task>"
@@ -14,9 +14,9 @@ Feature: add task
     
      Examples: 
       | task        | 
-      | sumary only | 
+      | date picker | 
    
-  @regression @addTask @loggedIn
+  @regression @addTask @loggedIn 
   Scenario Outline: task appears in task queue immediately after creation
     Given on main spec page
     When a task is created with "<task>"
@@ -67,7 +67,7 @@ Feature: add task
       | description,labels,assignee,location,date picker | 
       
       
-  @regression @loggedIn @addTask @test
+  @regression @loggedIn @addTask
   Scenario Outline: newly added task appears correct in edit task area immediately after entry
     Given on main spec page
     When a task is created with "<task>"

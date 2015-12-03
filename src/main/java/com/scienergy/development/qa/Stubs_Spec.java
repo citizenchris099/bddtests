@@ -39,6 +39,9 @@ public class Stubs_Spec {
 	protected String location = randomString.RandomUName();
 	protected String assignee = "Test User";
 	protected String date = randomString.date(1);
+//	protected String date = "12/31/2015";
+	String user1 = "Test User";
+	String user2 = "Test User2";
 
 	protected String[] nLabels = { randomString.Random2Word(), randomString.Random2Word(), randomString.Random2Word(),
 			randomString.Random2Word() };
@@ -85,6 +88,10 @@ public class Stubs_Spec {
 		taskForm.put("unblock", "unBlockTask");
 		taskForm.put("reopen", "reopenTask");
 		taskForm.put("edit status", "editStatus");
+		taskForm.put("not started", "0");
+		taskForm.put("in progress", "1");
+		taskForm.put("on hold", "2");
+		taskForm.put("complete", "3");
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
@@ -101,7 +108,7 @@ public class Stubs_Spec {
 
 	@After("@loggedIn")
 	public void logOut() throws InterruptedException {
-		new SpecMainPage(driver).LogOut();
+		new SpecMainPage(driver).selectTaskQueueGroup("Open").LogOut();
 	}
 
 	/**
@@ -207,7 +214,7 @@ public class Stubs_Spec {
 	@Then("^task info appears correct in the edit task area$")
 	public void task_info_appears_correct_in_the_edit_task_area() throws Throwable {
 		tp1 = specMain.checkTask(tp0);
-		
+
 		System.out.println("tp0 labels = " + tp0.getLabelsPresent() + " tp1 labels = " + tp1.getLabelsPresent());
 		System.out.println("tp0 canceled = " + tp0.getCanceled() + " tp1 canceled = " + tp1.getCanceled());
 		System.out.println("tp0 blocked = " + tp0.getBlocked() + " tp1 blocked = " + tp1.getBlocked());
@@ -218,7 +225,7 @@ public class Stubs_Spec {
 		System.out.println("tp0 date = " + tp0.getDueDate() + " tp1 date = " + tp1.getDueDate());
 		System.out.println("tp0 description = " + tp0.getDescription() + " tp1 description = " + tp1.getDescription());
 		System.out.println("tp0 summary = " + tp0.getSummary() + " tp1 summary = " + tp1.getSummary());
-		
+
 		if (tp0.hashCode() != tp1.hashCode()) {
 			throw new RuntimeException("Task Info did not match");
 		}
@@ -270,12 +277,83 @@ public class Stubs_Spec {
 		System.out.println("tp1 date = " + tp1.getDueDate() + " tp2 date = " + tp2.getDueDate());
 		System.out.println("tp1 description = " + tp1.getDescription() + " tp2 description = " + tp2.getDescription());
 		System.out.println("tp1 summary = " + tp1.getSummary() + " tp2 summary = " + tp2.getSummary());
+		System.out.println("tp1 comment = " + tp1.getComment001() + " tp2 comment = " + tp2.getComment001());
+		System.out.println("tp1 comment author = " + tp1.getUser() + " tp2 comment author = " + tp2.getUser());
+		System.out.println("tp1 comment date time = " + tp1.getComment001DateTime() + " tp2 comment date time = "
+				+ tp2.getComment001DateTime());
 
 		if (tp1.hashCode() != tp2.hashCode()) {
 			throw new RuntimeException("Task Info did not match");
 		}
 	}
 
+	/**
+	 * status stubs
+	 */
+
+	@When("^task status changed to \"([^\"]*)\"$")
+	public void task_status_changed_to(String arg1) throws Throwable {
+		String[] editTaskstatus = { "editStatus" };
+		int status = Integer.parseInt(taskForm.get(arg1));
+		tp1 = taskInfoClone(tp0);
+		taskInfoEdit(tp1, editTaskstatus, status);
+		specMain.editTask(tp0, tp1, editTaskstatus);
+	}
+
+	@Then("^edited task is displayed in open task queue$")
+	public void edited_task_is_displayed_in_open_task_queue() throws Throwable {
+		specMain.selectTaskQueueGroup("Open");
+		edited_task_is_displayed_in_task_queue();
+	}
+
+	@Then("^\"([^\"]*)\" displays correctly in open task queue$")
+	public void displays_correctly_in_open_task_queue(String arg1) throws Throwable {
+		specMain.selectTaskQueueGroup("Open");
+		if (!specMain.checkTaskStatus(tp1.getSummary()).equals(tp1.getStatusDisplay())) {
+			throw new RuntimeException("status display did not match");
+		}
+	}
+
+	@Then("^edited task is displayed in closed task queue$")
+	public void edited_task_is_displayed_in_closed_task_queue() throws Throwable {
+		specMain.selectTaskQueueGroup("Closed");
+		edited_task_is_displayed_in_task_queue();
+	}
+
+	@Then("^\"([^\"]*)\" displays correctly in closed task queue$")
+	public void displays_correctly_in_closed_task_queue(String arg1) throws Throwable {
+		specMain.selectTaskQueueGroup("Closed");
+		if (specMain.checkTaskComplete(tp1.getSummary()) < 1) {
+			throw new RuntimeException("status was not complete");
+		}
+	}
+
+	@Then("^edited task is not displayed in open task queue$")
+	public void edited_task_is_not_displayed_in_open_task_queue() throws Throwable {
+		specMain.selectTaskQueueGroup("Open");
+		if (specMain.LogOut().loginAs(tI0.getMiscUname001(), tI0.getMiscPword001())
+				.checkTaskInQueuePresent(tp1.getSummary()) > 0) {
+			throw new RuntimeException("Edited Task present in queue");
+		}
+	}
+
+	@Then("^edited task is not displayed in closed task queue$")
+	public void edited_task_is_not_displayed_in_closed_task_queue() throws Throwable {
+		specMain.selectTaskQueueGroup("Closed");
+		if (specMain.LogOut().loginAs(tI0.getMiscUname001(), tI0.getMiscPword001())
+				.checkTaskInQueuePresent(tp1.getSummary()) > 0) {
+			throw new RuntimeException("Edited Task present in queue");
+		}
+	}
+
+	/**
+	 * used to create the initial TaskPOJO object which is used to create a task
+	 * 
+	 * @param task
+	 *            : String[] that denotes what values to pass into the TaskPOJO
+	 *            object
+	 * @return : TaskPOJO
+	 */
 	private TaskPOJO createTaskInfo(String[] task) {
 		TaskPOJO orig = new TaskPOJO();
 		orig.setSummary(summary);
@@ -317,6 +395,11 @@ public class Stubs_Spec {
 	}
 
 	private TaskPOJO taskInfoEdit(TaskPOJO edit, String[] task, int status) {
+		HashMap<Integer, String> statusDisplay = new HashMap<Integer, String>();
+		statusDisplay.put(0, "not started");
+		statusDisplay.put(1, "in progress");
+		statusDisplay.put(2, "on hold");
+		statusDisplay.put(3, "complete");
 		for (String t : task) {
 			if (t.equals("edidTaskSummary")) {
 				edit.setSummary(nSummary);
@@ -344,6 +427,7 @@ public class Stubs_Spec {
 				edit.setLabelsPresent(edit.getLabels().length);
 			} else if (t.equals("editTaskCommentField")) {
 				edit.setComment001(comment);
+				edit.setUser(user1);
 			} else if (t.equals("blockTask")) {
 				edit.setBlocked(1);
 			} else if (t.equals("cancelTask")) {
@@ -354,6 +438,7 @@ public class Stubs_Spec {
 				edit.setCanceled(0);
 			} else if (t.equals("editStatus")) {
 				edit.setStatus(status);
+				edit.setStatusDisplay(statusDisplay.get(edit.getStatus()));
 			}
 		}
 		return edit;
