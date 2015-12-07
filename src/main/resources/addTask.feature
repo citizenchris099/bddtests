@@ -14,7 +14,7 @@ Feature: add task
     
      Examples: 
       | task        | 
-      | date picker | 
+      | sumary only  | 
    
   @regression @addTask @loggedIn 
   Scenario Outline: task appears in task queue immediately after creation

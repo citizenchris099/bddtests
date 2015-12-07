@@ -56,5 +56,36 @@ Feature: task status
       | add         | status        |
       | sumary only | in progress   |
       | sumary only | on hold   |
+      
+  @regression @loggedIn @status 
+  Scenario Outline: task with status other than 'not started' reverted back to 'not started'
+    Given a task is created with "<add>"
+    And task is displayed in task queue
+    And task is selected
+    When task status changed to "<status>"
+    And status reverted back to not started
+    Then edited task is displayed in open task queue
+    And "<status>" displays correctly in open task queue
+    
+     Examples: 
+      | add         | status        |
+      | sumary only | in progress   |
+      | sumary only | on hold   |
+      
+  @regression @loggedIn @status
+  Scenario Outline: task that is closed is re-opened appears in the open queue
+    Given a task is created with "<add>"
+    And task is displayed in task queue
+    And task is selected
+    When task status changed to "<status>"
+    And status reverted back to "<openStatus>"
+    Then edited task is displayed in open task queue
+    And "<openStatus>" displays correctly in open task queue
+    
+     Examples: 
+      | add         | status   | openStatus  |
+      | sumary only | complete | in progress |
+      | sumary only | complete | on hold     |
+      | sumary only | complete | not started |
 
 

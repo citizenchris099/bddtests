@@ -39,7 +39,7 @@ public class Stubs_Spec {
 	protected String location = randomString.RandomUName();
 	protected String assignee = "Test User";
 	protected String date = randomString.date(1);
-//	protected String date = "12/31/2015";
+	// protected String date = "12/31/2015";
 	String user1 = "Test User";
 	String user2 = "Test User2";
 
@@ -92,6 +92,8 @@ public class Stubs_Spec {
 		taskForm.put("in progress", "1");
 		taskForm.put("on hold", "2");
 		taskForm.put("complete", "3");
+		taskForm.put("blocked", "4");
+		taskForm.put("canceled", "5");
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
@@ -108,7 +110,7 @@ public class Stubs_Spec {
 
 	@After("@loggedIn")
 	public void logOut() throws InterruptedException {
-		new SpecMainPage(driver).selectTaskQueueGroup("Open").LogOut();
+		new SpecMainPage(driver).selectTaskQueueGroup("Open").selectQuickFilter("All Tasks").LogOut();
 	}
 
 	/**
@@ -300,6 +302,18 @@ public class Stubs_Spec {
 		specMain.editTask(tp0, tp1, editTaskstatus);
 	}
 
+	@When("^status reverted back to not started$")
+	public void status_reverted_back_to_not_started() throws Throwable {
+		String[] editTaskstatus = { "editStatus" };
+		taskInfoEdit(tp1, editTaskstatus, 0);
+		specMain.editTask(tp0, tp1, editTaskstatus);
+	}
+
+	@When("^status reverted back to \"([^\"]*)\"$")
+	public void status_reverted_back_to(String arg1) throws Throwable {
+		task_status_changed_to(arg1);
+	}
+
 	@Then("^edited task is displayed in open task queue$")
 	public void edited_task_is_displayed_in_open_task_queue() throws Throwable {
 		specMain.selectTaskQueueGroup("Open");
@@ -309,7 +323,9 @@ public class Stubs_Spec {
 	@Then("^\"([^\"]*)\" displays correctly in open task queue$")
 	public void displays_correctly_in_open_task_queue(String arg1) throws Throwable {
 		specMain.selectTaskQueueGroup("Open");
-		if (!specMain.checkTaskStatus(tp1.getSummary()).equals(tp1.getStatusDisplay())) {
+		String status = specMain.checkTaskStatus(tp1.getSummary());
+		System.out.println("status found = " + status + " and tp1 statusdisplay = " + tp1.getStatusDisplay());
+		if (!status.equals(tp1.getStatusDisplay())) {
 			throw new RuntimeException("status display did not match");
 		}
 	}
@@ -323,7 +339,7 @@ public class Stubs_Spec {
 	@Then("^\"([^\"]*)\" displays correctly in closed task queue$")
 	public void displays_correctly_in_closed_task_queue(String arg1) throws Throwable {
 		specMain.selectTaskQueueGroup("Closed");
-		if (specMain.checkTaskComplete(tp1.getSummary()) < 1) {
+		if (specMain.checkTaskInQueueElement(tp1.getSummary(), "taskComplete") < 1) {
 			throw new RuntimeException("status was not complete");
 		}
 	}
@@ -344,6 +360,47 @@ public class Stubs_Spec {
 				.checkTaskInQueuePresent(tp1.getSummary()) > 0) {
 			throw new RuntimeException("Edited Task present in queue");
 		}
+	}
+
+	/**
+	 * blocked and canceled stubs
+	 */
+
+	@Then("^block flag displays for task$")
+	public void block_flag_displays_for_task() throws Throwable {
+		specMain.selectTaskQueueGroup("Open");
+		if (specMain.checkTaskInQueueElement(tp1.getSummary(), "taskBlocked") < 1) {
+			throw new RuntimeException("blocked flag was not found");
+		}
+	}
+
+	@Then("^canceled flag displays for task$")
+	public void canceled_flag_displays_for_task() throws Throwable {
+		specMain.selectTaskQueueGroup("Closed");
+		if (specMain.checkTaskInQueueElement(tp1.getSummary(), "taskCanceled") < 1) {
+			throw new RuntimeException("blocked flag was not found");
+		}
+	}
+
+	@When("^task is unblocked$")
+	public void task_is_unblocked() throws Throwable {
+		String[] editTaskstatus = { "unBlockTask" };
+		taskInfoEdit(tp1, editTaskstatus, 0);
+		specMain.editTask(tp0, tp1, editTaskstatus);
+	}
+
+	@When("^task is reopened$")
+	public void task_is_reopened() throws Throwable {
+		String[] editTaskstatus = { "reopenTask" };
+		taskInfoEdit(tp1, editTaskstatus, 0);
+		specMain.editTask(tp0, tp1, editTaskstatus);
+	}
+
+	@When("^task is blocked$")
+	public void task_is_blocked() throws Throwable {
+		String[] editTaskstatus = { "blockTask" };
+		tp1.setBlocked(1);
+		specMain.editTask(tp0, tp1, editTaskstatus);
 	}
 
 	/**
